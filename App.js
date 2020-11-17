@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components';
 import * as Font from 'expo-font';
 
+// import store from './app/store';
 import Config from './config.json';
 import LinearLoader from './app/components/shared/LinearLoader';
 
@@ -57,11 +58,16 @@ class App extends Component {
     
     try {
       console.log('inside of getAssets()');
-      // const token = await AsyncStorage.getItem(Config.USER_TOKEN_KEY);
+      // const value = await AsyncStorage.getItem('@storage_Key')
+      console.log(`Config USER_TOKEN = ${Config.USER_TOKEN_KEY}`);
+      console.log(Config.USER_TOKEN_KEY);
+      const token = await AsyncStorage.getItem(Config.USER_TOKEN_KEY);
+      console.log(`token = ${token}`);
       // let studioData = await AsyncStorage.getItem(Config.STUDIO_DATA_KEY);
 
-      // if (studioData && studioData.length && !isFlexStudios) {
-      //   studioData = JSON.parse(studioData);
+      // if (studioData && studioData.length) {
+      //    studioData = JSON.parse(studioData);
+      // }
       //   store.dispatch(setStudio(studioData));
       // } else await store.dispatch(requestStudioData(false, flexLocation));
 
