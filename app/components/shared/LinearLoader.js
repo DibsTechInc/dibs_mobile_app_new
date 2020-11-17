@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Animated, View } from 'react-native';
+import { Animated, View, Text } from 'react-native';
 import HTML from 'react-native-render-html';
 
 import { WHITE } from '../../constants';
@@ -19,7 +19,6 @@ const LoaderBackground = styled.View`
   background-color: ${props => fadeColor(props.color, 0.75)};
   bottom: 0;
   height: 3;
-  left: 0;
   position: absolute;
   right: 0;
   width: ${props => props.width};
@@ -55,86 +54,66 @@ class LinearLoader extends React.PureComponent {
       quote: generateQuote(),
     };
   }
-  /**
-   * @returns {undefined}
-   */
-  componentDidMount() {
-    this.cycleAnimation();
-  }
-  /**
-   * @returns {undefined}
-   */
-  cycleAnimation() {
-    Animated.sequence([
-      Animated.timing(
-        this.state.barWidthProgress,
-        { toValue: 1, duration: 750 }
-      ),
-      Animated.timing(
-        this.state.barLeftProgress,
-        { toValue: 1, duration: 750 }
-      ),
-      Animated.parallel([
-        Animated.timing(
-          this.state.barWidthProgress,
-          { toValue: 0, duration: 0 }
-        ),
-        Animated.timing(
-          this.state.barLeftProgress,
-          { toValue: 0, duration: 0 }
-        ),
-      ]),
-    ]).start(() => this.cycleAnimation());
-  }
+  // /**
+  //  * @returns {undefined}
+  //  */
+  // componentDidMount() {
+  //   this.cycleAnimation();
+  // }
+  // /**
+  //  * @returns {undefined}
+  //  */
+  // cycleAnimation() {
+  //   Animated.sequence([
+  //     Animated.timing(
+  //       this.state.barWidthProgress,
+  //       { toValue: 1, 
+  //         duration: 750,
+  //         useNativeDriver: false,
+  //       }
+  //     ),
+  //     Animated.timing(
+  //       this.state.barLeftProgress,
+  //       { toValue: 1, 
+  //         duration: 750,
+  //         useNativeDriver: false, 
+  //       }
+  //     ),
+  //     Animated.parallel([
+  //       Animated.timing(
+  //         this.state.barWidthProgress,
+  //         { toValue: 0, duration: 0, useNativeDriver: false }
+  //       ),
+  //       Animated.timing(
+  //         this.state.barLeftProgress,
+  //         { toValue: 0, duration: 0, useNativeDriver: false }
+  //       ),
+  //     ]),
+  //   ]).start(() => this.cycleAnimation());
+  // }
   /**
    * render
    * @returns {JSX.Element} HTML
    */
   render() {
     // check if studio has custom html quote styling
-    const renderTypeOfQuote =
-      this.state.quote.includes('<') ?
-      (
-        <HTML
-          html={this.state.quote}
-          imagesMaxWidth={this.props.width}
-          baseFontStyle={{
-            color: this.props.color,
-            fontFamily: 'studio-font',
-            fontSize: 16,
-            textAlign: 'center',
-          }}
-          tagsStyles={{
-            p: { borderWidth: 1, borderColor: 'transparent' },
-          }}
-          classesStyles={{
-            quoter: { fontFamily: 'studio-font-heavy', fontSize: 14, marginTop: 5 },
-          }}
-        />
-      ) : <NormalQuoteText color={this.props.color}>{this.state.quote}</NormalQuoteText>;
-
+    console.log(`this.state.quote ==> ${this.state.quote}`);
+    
     return (
       <LoaderContainer>
-        {this.props.showQuote &&
-          <QuoteView>
-            {renderTypeOfQuote}
-          </QuoteView>
-        }
-        <View style={{ width: this.props.width, position: 'relative', overflow: 'hidden', height: 5 }}>
-          <LoaderBackground
-            color={this.props.color}
-            width={this.props.width}
-          />
-          <Animated.View
+        <View style={{ width: 200, position: 'relative', overflow: 'hidden', height: 5 }}>
+          {/* <Animated.View
             style={{
               backgroundColor: this.props.color,
               bottom: 0,
               height: 3,
-              left: Animated.multiply(this.props.width, this.state.barLeftProgress),
+              // left: Animated.multiply(this.props.width, this.state.barLeftProgress),
               position: 'absolute',
+              useNativeDriver: false,
               width: Animated.multiply(this.props.width, this.state.barWidthProgress),
             }}
-          />
+          /> */}
+          <Text>Alicia</Text>
         </View>
       </LoaderContainer>
     );
@@ -143,7 +122,6 @@ class LinearLoader extends React.PureComponent {
 
 LinearLoader.defaultProps = {
   color: WHITE,
-  width: 200,
   showQuote: false,
 };
 
