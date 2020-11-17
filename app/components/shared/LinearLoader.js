@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Animated, View, Text } from 'react-native';
-import HTML from 'react-native-render-html';
+import { Animated, View } from 'react-native';
 
 import { WHITE } from '../../constants';
 import { fadeColor, generateQuote } from '../../helpers';
@@ -17,17 +16,17 @@ const LoaderContainer = styled.View`
 
 const LoaderBackground = styled.View`
   background-color: ${props => fadeColor(props.color, 0.75)};
-  bottom: 0;
-  height: 3;
+  bottom: 0px;
+  height: 3px;
   position: absolute;
-  right: 0;
+  right: 0px;
   width: ${props => props.width};
 `;
 
 const QuoteView = styled.View`
   width: 60%;
   margin-bottom: 50px;
-  padding-horizontal: 15;
+  padding-horizontal: 15px;
   align-items: center;
 `;
 
@@ -113,7 +112,7 @@ class LinearLoader extends React.PureComponent {
       <View style={{width: 200, position: 'relative', overflow: 'hidden', height: 5}}>
         <LoaderBackground
           color={this.props.color}
-          width='200'
+          width='200px'
         />
         <Animated.View
           style={{
@@ -126,22 +125,6 @@ class LinearLoader extends React.PureComponent {
           }}
         />
       </View>
-      {/* <View style={{ width: 200, position: 'relative', overflow: 'hidden', height: 5 }}>
-        <LoaderBackground
-          color={this.props.color}
-          width={this.props.width}
-        />
-        {/* <Animated.View
-          style={{
-            backgroundColor: this.props.color,
-            bottom: 0,
-            height: 3,
-            left: Animated.multiply('200', this.state.barLeftProgress),
-            position: 'absolute',
-            width: Animated.multiply('200', this.state.barWidthProgress),
-          }}
-        /> 
-      </View> */}
     </LoaderContainer>
     );
   }
