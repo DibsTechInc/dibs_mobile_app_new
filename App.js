@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import styled from 'styled-components';
+
+import Config from './config.json';
 
 // export default function App() {
 //   return (
@@ -20,6 +23,13 @@ import { StyleSheet, Text, View } from 'react-native';
 //   },
 // });
 
+const StyledLoadingPage = styled.View`
+  align-items: center;
+  background: ${Config.STUDIO_COLOR};
+  justify-content: center;
+  flex: 5;
+`;
+
 /**
  * @class App
  * @extends Component
@@ -36,8 +46,10 @@ class App extends Component {
   render() {
     console.log('testing here');
     return (
-      <View>
-        <Text>Alicia App</Text>
+      <View style={{ flex: 1}}>  
+        <StyledLoadingPage>
+          <Text>Alicia App</Text>
+        </StyledLoadingPage>
       </View>
     );
   }

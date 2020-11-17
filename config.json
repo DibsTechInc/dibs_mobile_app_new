@@ -1,0 +1,26 @@
+{
+    "DIBS_HOST": "https://www.ondibs.com",
+    "STUDIO_TZ": "America/New_York",
+    "S3_DIRNAME": "sweatconnected",
+    "SENTRY_DSN": "https://2dde6ea6e1db4e019a2f44205a159ea7@o160749.ingest.sentry.io/5514891",
+    "STUDIO_FONT": "SourceSansPro",
+    "STUDIO_COLOR": "#2b2f33",
+    "STUDIO_EMAIL": "info@ondibs.com",
+    "DIBS_STUDIO_ID": 212,
+    "LOADING_QUOTES": [
+      "Quote 1 - Replace",
+      "Quote 2 - Replace",
+      "Quote 3 - Replace"
+    ],
+    "USER_TOKEN_KEY": "qiu21mbygeqbxmcn4vnh",
+    "DIBS_TERMS_LINK": "https://www.ondibs.com/documents/terms-and-privacy.pdf",
+    "STUDIO_DATA_KEY": "sweatconnected",
+    "STRIPE_PUBLIC_KEY": "pk_live_A88bToAQk67ecJSMySrlRiW1",
+    "STUDIO_TERMS_LINK": "https://www.ondibs.com/documents/terms-and-privacy.pdf",
+    "STUDIO_TEXT_COLOR": "#2b2f33",
+    "STUDIO_DROP_POLICY": "In order to receive credit back, please drop 12 hours before class time.",
+    "RELEASE_CHANNEL_DEV": "sweatconnected-mobile",
+    "RELEASE_CHANNEL_PROD": "sweatconnected-mobile",
+    "MAXIMUM_CART_QUANTITY": 4,
+    "STUDIO_HIGHLIGHT_COLOR": "#6fbf98"
+  }
