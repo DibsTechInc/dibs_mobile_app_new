@@ -2,26 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components';
+import * as Font from 'expo-font';
 
 import Config from './config.json';
+import LinearLoader from './app/components/shared/LinearLoader';
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Hello World!!</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+import StudioFont from './assets/fonts/Regular.ttf';
+import StudioFontHeavy from './assets/fonts/Bold.ttf';
 
 const StyledLoadingPage = styled.View`
   align-items: center;
@@ -41,14 +28,29 @@ class App extends Component {
    */
   constructor() {
     super();
+    this.state = {
+      fontLoaded: false,
+    }
     
   }
+  /**
+  * @returns {undefined}
+  */
+ async getFonts() {
+  await Font.loadAsync({
+    'studio-font': StudioFont,
+    'studio-font-heavy': StudioFontHeavy,
+  });
+  this.setState({ fontLoaded: true });
+  }
+
   render() {
     console.log('testing here');
     return (
       <View style={{ flex: 1}}>  
         <StyledLoadingPage>
-          <Text>Alicia App</Text>
+          {/* <Text>Alicia App</Text> */}
+          <LinearLoader showQuote={this.state.fontLoaded} />
         </StyledLoadingPage>
       </View>
     );
