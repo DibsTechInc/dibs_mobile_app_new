@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, AppState } from 'react-native';
 import styled from 'styled-components';
 import * as Font from 'expo-font';
 
@@ -30,7 +30,10 @@ class App extends Component {
     super();
     this.state = {
       fontLoaded: false,
+      appState: AppState.currentState,
     }
+    // this.onAppStateChange = this.onAppStateChange.bind(this);
+    // AppState.addEventListener('change', this.onAppStateChange);
     
   }
   /**
@@ -43,9 +46,17 @@ class App extends Component {
   });
   this.setState({ fontLoaded: true });
   }
+  /**
+   * @returns {undefined}
+   */
+  async componentDidMount() {
+    await this.getFonts();
+  }
+  
 
   render() {
     console.log('testing here');
+    console.log(`fontLoaded => ${this.state.fontLoaded}`);
     return (
       <View style={{ flex: 1}}>  
         <StyledLoadingPage>
