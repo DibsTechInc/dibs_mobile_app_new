@@ -110,6 +110,22 @@ class LinearLoader extends React.PureComponent {
           {renderTypeOfQuote}
         </QuoteView>
       }
+      <View>
+        <LoaderBackground
+          color={this.props.color}
+          width='200'
+        />
+        <Animated.View
+          style={{
+            backgroundColor: this.props.color,
+            bottom: 0,
+            height: 3,
+            left: Animated.multiply(200, this.state.barLeftProgress),
+            position: 'absolute',
+            width: Animated.multiply(200, this.state.barWidthProgress),
+          }}
+        />
+      </View>
       {/* <View style={{ width: 200, position: 'relative', overflow: 'hidden', height: 5 }}>
         <LoaderBackground
           color={this.props.color}
