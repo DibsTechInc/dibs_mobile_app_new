@@ -4,7 +4,7 @@
     "S3_DIRNAME": "sweatconnected",
     "SENTRY_DSN": "https://2dde6ea6e1db4e019a2f44205a159ea7@o160749.ingest.sentry.io/5514891",
     "STUDIO_FONT": "SourceSansPro",
-    "STUDIO_COLOR": "#2b2f33",
+    "STUDIO_COLOR": "#6fbf98",
     "STUDIO_EMAIL": "info@ondibs.com",
     "DIBS_STUDIO_ID": 212,
     "LOADING_QUOTES": [
