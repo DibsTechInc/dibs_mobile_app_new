@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components';
 import * as Font from 'expo-font';
 
-// import store from './app/store';
+import store from './app/store';
 import Config from './config.json';
 import LinearLoader from './app/components/shared/LinearLoader';
 
@@ -94,6 +94,15 @@ class App extends Component {
   async componentDidMount() {
     await this.getFonts();
     await this.getAssets();
+    
+    try {
+      // can we get the state of the store
+      const state = store.getState();
+      console.log(`state => ${JSON.stringify(state)}`);
+
+    } catch (err) {
+      console.log(err);
+    }
   }
   componentWillUnmount() {
     clearInterval(this.eventRefreshInterval);
