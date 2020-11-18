@@ -1,19 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import { View, AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components';
+import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
+import * as Sentry from 'sentry-expo';
 
 import store from './app/store';
 import Config from './config.json';
+import Navigator from './app/router';
 import LinearLoader from './app/components/shared/LinearLoader';
+import Modal from './app/components/Modal';
 
 import StudioFont from './assets/fonts/Regular.ttf';
 import StudioFontHeavy from './assets/fonts/Bold.ttf';
 import { 
   removeExpiredEvents,
   requestEventData,
+  setStudio,
+  requestStudioData,
+  requestUserData,
+  syncUserEvents,
+  syncUserPasses,
  } from './app/actions';
 
 // Image imports for cashing
@@ -42,6 +52,9 @@ import MyClassesIcon from './assets/img/my-classes.png';
 import ColumnSpotBooking from './assets/img/column-spotbooking.png';
 import DoorSpotBooking from './assets/img/door-spotbooking.png';
 
+Sentry.init({
+  dsn: Config.SENTRY_DSN
+});
 
 const StyledLoadingPage = styled.View`
   align-items: center;
@@ -63,6 +76,7 @@ class App extends Component {
     super();
     this.state = {
       fontLoaded: false,
+      userToken: null,
       fetchedAssets: false,
       imageLoaded: false,
       errorOccured: false,
@@ -85,6 +99,39 @@ class App extends Component {
   /**
    * @returns {undefined}
    */
+  async getImages() {
+    await Asset.loadAsync([
+      MainPage,
+      ActivityGrey,
+      ActivityWhite,
+      CalendarGrey,
+      CalendarWhite,
+      CartGrey,
+      CartWhite,
+      MainGrey,
+      Amex,
+      Diners,
+      Discover,
+      JCB,
+      MasterCard,
+      Unknown,
+      Visa,
+      TrashGrey,
+      UserGrey,
+      UserWhite,
+      FilterWhite,
+      CheckWhite,
+      AddToCalendar,
+      MyClassesIcon,
+      ColumnSpotBooking,
+      DoorSpotBooking,
+    ]);
+
+    this.setState({ imageLoaded: true });
+  }
+  /**
+   * @returns {undefined}
+   */
   async getAssets() {
     
     try {
@@ -94,28 +141,32 @@ class App extends Component {
       console.log(Config.USER_TOKEN_KEY);
       const token = await AsyncStorage.getItem(Config.USER_TOKEN_KEY);
       console.log(`token = ${token}`);
-      // let studioData = await AsyncStorage.getItem(Config.STUDIO_DATA_KEY);
+      let studioData = await AsyncStorage.getItem(Config.STUDIO_DATA_KEY);
+      console.log(`studioData => ${studioData}`);
 
-      // if (studioData && studioData.length) {
-      //    studioData = JSON.parse(studioData);
-      // }
-      //   store.dispatch(setStudio(studioData));
-      // } else await store.dispatch(requestStudioData(false, flexLocation));
+      if (studioData && studioData.length) {
+        studioData = JSON.parse(studioData);
+        store.dispatch(setStudio(studioData));
+      } else await store.dispatch(requestStudioData(false));
 
-      // if (token) {
-      //   await store.dispatch(requestUserData());
-      // }
+      if (token) {
+        await store.dispatch(requestUserData());
+      }
+      this.setState({
+        fetchedAssets: true,
+        userToken: token,
+      })
 
-      // this.setState({ fetchedAssets: true, userToken: token });
-      // if (await AsyncStorage.getItem(Config.STUDIO_DATA_KEY)) await store.dispatch(requestStudioData(false, flexLocation));
-      // if (token) {
-      //   await store.dispatch(syncUserEvents());
-      //   await store.dispatch(syncUserPasses());
-      // }
+      if (await AsyncStorage.getItem(Config.STUDIO_DATA_KEY)) await store.dispatch(requestStudioData(false));
+
+      if (token) {
+        await store.dispatch(syncUserEvents());
+        await store.dispatch(syncUserPasses());
+      }
     } catch (err) {
-      // AsyncStorage.clear();
-      // store.dispatch(logFatalError(err));
-      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      AsyncStorage.clear();
+      store.dispatch(logFatalError(err));
+      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
       this.setState({ fetchedAssets: false, errorOccurred: true });
     }
   }
@@ -125,6 +176,7 @@ class App extends Component {
   async componentDidMount() {
     await this.getFonts();
     await this.getAssets();
+    await this.getImages();
     
     try {
       // can we get the state of the store
@@ -168,13 +220,20 @@ class App extends Component {
     console.log(`appState: ${this.state.appState}`);
     console.log(`fetchedAssets: ${this.state.fetchedAssets}`);
     console.log(`imageLoaded: ${this.state.imageLoaded}`);
+
     return (
-      <View style={{ flex: 1}}>  
-        <StyledLoadingPage>
-          {/* <Text>Alicia App</Text> */}
-          <LinearLoader showQuote={this.state.fontLoaded} />
-        </StyledLoadingPage>
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1}}>
+          {(this.state.fetchedAssets && this.state.imageLoaded) ? (
+            <Navigator userToken={this.state.userToken} />
+          ) : (
+            <StyledLoadingPage>
+              <LinearLoader showQuote={this.state.fontLoaded} />
+            </StyledLoadingPage>
+          )}  
+          <Modal />
+        </View>
+      </Provider>
     );
   }
 }
