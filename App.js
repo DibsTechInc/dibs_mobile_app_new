@@ -11,6 +11,10 @@ import LinearLoader from './app/components/shared/LinearLoader';
 
 import StudioFont from './assets/fonts/Regular.ttf';
 import StudioFontHeavy from './assets/fonts/Bold.ttf';
+import { 
+  removeExpiredEvents,
+  requestEventData,
+ } from './app/actions';
 
 const StyledLoadingPage = styled.View`
   align-items: center;
@@ -99,9 +103,17 @@ class App extends Component {
       // can we get the state of the store
       const state = store.getState();
       console.log(`state => ${JSON.stringify(state)}`);
+      
+      if (
+        !(await AsyncStorage.getItem(Config.USER_TOKEN_KEY))
+        || !state.user.id
+        || !state.studio.data
+      ) return;
+      store.dispatch(removeExpiredEvents());
+      store.dispatch(requestEventData({}, false));
 
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
   componentWillUnmount() {
