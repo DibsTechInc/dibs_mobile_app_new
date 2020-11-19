@@ -3,6 +3,7 @@ import { Button, View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import store from './app/store';
 import Config from './config.json';
@@ -13,6 +14,10 @@ import {
   LANDING_ROUTE,
   VERIFY_ROUTE,
 } from './app/constants/RouteConstants';
+
+import {
+  requestStudioData,
+} from './app/actions';
 
 // update packages and start from scratch - only what we need
 // set up homepage
@@ -36,8 +41,42 @@ class App extends React.Component {
    */
   constructor() {
     super();
+    this.state = {
+      fetchedAssets: false,
+      errorOccurred: false,
+    }
+  }
+  /**
+   * @returns {undefined}
+   */
+  async componentDidMount() {
+    await this.getAssets();
+  }
+  /**
+   * @returns {undefined}
+   */
+  async getAssets() {
+    try {
+      let studioData = await AsyncStorage.getItem(Config.STUDIO_DATA_KEY);
+
+      console.log(`studioData = ${studioData}`);
+
+      if (studioData && studioData.length) {
+        studioData = JSON.parse(studioData);
+        store.dispatch(setStudio(studioData));
+      } else await store.dispatch(requestStudioData(false));
+
+    } catch(err) {
+      console.log(`error --> ${err}`);
+      AsyncStorage.clear();
+      this.setState({ fetchedAssets: false, errorOccurred: true });
+
+    }
   }
   render() {
+    console.log(`\n\n####### TESTING VARIABLES`);
+    console.log(`fetchedAssets = ${this.state.fetchedAssets}`);
+
     return (
       <Provider store={store}>
         <NavigationContainer>
