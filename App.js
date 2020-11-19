@@ -1,9 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { View, AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components';
+import { Updates } from 'expo';
+import * as ScreenOrientation from 'expo-screen-orientation'
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import * as Sentry from 'sentry-expo';
@@ -25,6 +26,8 @@ import {
   syncUserEvents,
   syncUserPasses,
  } from './app/actions';
+
+ import { getUserIsResettingPassword } from './app/selectors';
 
 // Image imports for cashing
 import MainPage from './assets/img/main-page.png';
@@ -136,7 +139,6 @@ class App extends Component {
     
     try {
       console.log('inside of getAssets()');
-      // const value = await AsyncStorage.getItem('@storage_Key')
       console.log(`Config USER_TOKEN = ${Config.USER_TOKEN_KEY}`);
       console.log(Config.USER_TOKEN_KEY);
       const token = await AsyncStorage.getItem(Config.USER_TOKEN_KEY);
@@ -182,6 +184,7 @@ class App extends Component {
       // can we get the state of the store
       const state = store.getState();
       console.log(`state => ${JSON.stringify(state)}`);
+      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
       
       if (
         !(await AsyncStorage.getItem(Config.USER_TOKEN_KEY))
@@ -195,6 +198,7 @@ class App extends Component {
       console.error(err);
     }
   }
+
   componentWillUnmount() {
     clearInterval(this.eventRefreshInterval);
     AppState.removeEventListener('change', this.onAppStateChange);
@@ -205,12 +209,28 @@ class App extends Component {
    */
   onAppStateChange(nextAppState) {
     console.log('inside of onAppStateChange');
-    // if (getUserIsResettingPassword(store.getState())) return;
+    if (getUserIsResettingPassword(store.getState())) return;
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      // this.getUpdates();
+      this.getUpdates();
       this.setState({ fetchedAssets: false }, () => this.getAssets());
     }
     this.setState({ appState: nextAppState });
+  }
+  /**
+   * @returns {undefined}
+   */
+  async getUpdates() {
+    if (__DEV__) return;
+
+    try {
+      const update = await Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        Updates.reload();
+      }
+    } catch (err) {
+      console.log(err);
+      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+    }
   }
   
 
