@@ -103,7 +103,7 @@ class App extends React.Component {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator 
-            initialRouteName={LANDING_ROUTE}
+            initialRouteName={initialRoute}
             screenOptions={{
               headerShown: false,
               headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
