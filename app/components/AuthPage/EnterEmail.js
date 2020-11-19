@@ -1,172 +1,51 @@
-import React, { PureComponent } from 'react';
-import { ScrollView, Keyboard } from 'react-native';
-import { KeyboardAccessoryView } from 'react-native-keyboard-accessory';
-import { PropTypes } from 'prop-types';
+import React, {Component} from 'react';
+import { Text, View, Button } from "react-native";
 import { connect } from 'react-redux';
-import { Promise } from 'bluebird';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+import Config from '../../../config.json'
+import { getStudioName } from '../../selectors/StudioSelectors';
 
 import {
-  FadeInView,
-  InputField,
-  LinearLoader,
-  MaterialButton,
-} from '../shared';
-import { validateEmail } from '../../actions/UserActions';
+  LANDING_ROUTE,
+} from '../../constants/RouteConstants';
 
-import { DEFAULT_BG } from '../../constants';
-import Config from '../../../config.json';
 
-import {
-  NormalText,
-  FlexCenter,
-} from '../styled';
-
-const StyledButtonView = styled.View`
-  padding: 8px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ErrorText = styled(NormalText)`
-  fontSize: 12px;
-  color: red;
-  position: absolute;
-  top: 52%;
-`;
-
-/**
- * @class EnterEmail
- * @extends Component
- */
-class EnterEmail extends PureComponent {
+class EnterEmail extends Component {
   /**
- * @constructor
- * @constructs EnterEmail
- * @param {Object} props for component
- */
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      isLoading: false,
-      errorText: '',
-      validInput: false,
-    };
-
-    this.handleOnPress = this.handleOnPress.bind(this);
-    this.onChangeText = this.onChangeText.bind(this);
-  }
-
-  /**
-  * @returns {undefined}
-  */
-  componentWillUnmount() {
-    Keyboard.dismiss();
-  }
-  /**
-   * @param {string} email - user email
-   * @returns {undefined}
-   */
-  onChangeText(email) {
-    this.setState({ email });
-  }
-  /**
- * @returns {undefined}
- */
-  async handleOnPress() {
-    const { email } = this.state;
-    console.log('inside of enterEmail');
-
-    // Heavy duty regex catches most email formatting errors
-    const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const isValidEmail = validEmail.test(email);
-
-    if (!isValidEmail) {
-      this.setState({ errorText: 'Please enter a valid email address.' });
-      return;
+     * @constructor
+     * @cosntructs LandingPage
+     * @param {Object} props for component 
+     */
+    constructor(props) {
+      super(props);
     }
-    await new Promise(res => this.setState({ isLoading: true, validInput: true }, res));
-    const route = await this.props.validateEmail(email);
-
-    Promise.delay(2000).then(function() {
-      console.log("20001 ms passed");
-      return Config.LOADING_QUOTES?.length;
-      }).delay(2000).then(function(loadingquotes) {
-        console.log(loadingquotes);
-        console.log("another 2000 ms passed") ;
-      });
-
-    // await Promise.delay(Config.LOADING_QUOTES?.length && 2000);
-    
-    console.log('made it past that Promise.delay');
-    await new Promise(res => this.setState({ isLoading: false, errorText: '' }, res));
-
-    if (!route) {
-      this.setState({ isLoading: false, errorText: 'Please enter a valid email provider.' });
-      this.props.screenProps.isLoading = false;
-    } else {
-      this.props.navigation.navigate(route, { email, fromReset: false }); // last key for PW reset
-    }
-  }
-  /**
-   * @returns {JSX} XML
-   */
-  render() {
-    if (this.state.isLoading) {
+    render() {
+      console.log(`this.props.studioName => ${this.props.studioName}`);
       return (
-        <FadeInView style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <FlexCenter>
-            <LinearLoader showQuote color={Config.STUDIO_COLOR} />
-          </FlexCenter>
-        </FadeInView>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Config.STUDIO_COLOR}}>
+            <Text>This shall be the page to enter email</Text>
+            <Button 
+              title="Go back to Landing Page"
+              onPress={() => this.props.navigation.navigate(LANDING_ROUTE)}
+              />
+          </View>
       );
+
     }
-    return (
-      <FadeInView>
-        <ScrollView keyboardShouldPersistTaps="always" contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: '70%', position: 'relative' }}>
-          <InputField
-            customFocus
-            label="What's your email?"
-            autoCapitalize="none"
-            onChangeText={this.onChangeText}
-            onSubmitEditing={this.handleOnPress}
-            value={this.state.email}
-            containerStyle={{
-              marginBottom: this.state.emailError ? 10 : 50,
-              width: 200,
-            }}
-            labelStyle={{ marginBottom: 20, textAlign: 'center' }}
-            blurOnSubmit={this.state.validInput}
-          />
-          {this.state.errorText.length ? <ErrorText>{this.state.errorText}</ErrorText> : undefined}
-        </ScrollView>
-        <KeyboardAccessoryView
-          alwaysVisible
-          hideBorder
-          style={{ backgroundColor: DEFAULT_BG, marginBottom: 25 }}
-        >
-          <StyledButtonView>
-            <MaterialButton
-              onPress={this.handleOnPress}
-              text="Next"
-              style={{ width: '75%', height: 40 }}
-            />
-          </StyledButtonView>
-        </KeyboardAccessoryView>
-      </FadeInView>
-    );
-  }
 }
 
 EnterEmail.propTypes = {
   navigation: PropTypes.shape(),
+  studioName: PropTypes.string,
 };
 
-const mapDispatchToProps = {
-  validateEmail,
+EnterEmail.navigationOptions = {
+  headerMode: 'none',
 };
 
+const mapStateToProps = state => ({
+  studioName: getStudioName(state),
+})
 
-export default connect(null, mapDispatchToProps)(EnterEmail);
+export default connect(mapStateToProps)(EnterEmail);

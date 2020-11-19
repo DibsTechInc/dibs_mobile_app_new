@@ -7,9 +7,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import store from './app/store';
 import Config from './config.json';
 import LandingPage from './app/components/LandingPage';
+import EnterEmail from './app/components/AuthPage/EnterEmail';
 
 import {
   LANDING_ROUTE,
+  VERIFY_ROUTE,
 } from './app/constants/RouteConstants';
 
 // update packages and start from scratch - only what we need
@@ -23,24 +25,6 @@ import {
 // make first screen the splash image
 // set up loader
 
-
-function DetailsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
-      />
-    </View>
-  );
-}
 
 const Stack = createStackNavigator();
 
@@ -64,7 +48,7 @@ class App extends React.Component {
               headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
               }}>
             <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
-            <Stack.Screen name="Details" component={DetailsScreen}/>
+            <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

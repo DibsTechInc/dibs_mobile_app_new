@@ -6,6 +6,11 @@ import PropTypes from 'prop-types';
 import Config from '../../../config.json'
 import { getStudioName } from '../../selectors/StudioSelectors';
 
+import {
+  VERIFY_ROUTE,
+} from '../../constants/RouteConstants';
+ 
+
 
 class LandingPage extends Component {
   /**
@@ -20,10 +25,10 @@ class LandingPage extends Component {
       console.log(`this.props.studioName => ${this.props.studioName}`);
       return (
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Config.STUDIO_COLOR}}>
-            <Text>Landing Page</Text>
+            <Text>This is the landing page</Text>
             <Button 
-              title="Go to Details"
-              onPress={() => navigation.navigate('Details')}
+              title="Go to enter email page"
+              onPress={() => this.props.navigation.navigate(VERIFY_ROUTE)}
               />
           </View>
       );
