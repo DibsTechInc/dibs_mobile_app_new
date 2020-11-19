@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,6 +16,10 @@ import {
 
 import {
   requestStudioData,
+  requestUserData,
+  syncUserEvents,
+  syncUserPasses,
+  setStudio,
 } from './app/actions';
 
 // update packages and start from scratch - only what we need
@@ -44,6 +47,7 @@ class App extends React.Component {
     this.state = {
       fetchedAssets: false,
       errorOccurred: false,
+      userToken: null,
     }
   }
   /**
@@ -57,14 +61,28 @@ class App extends React.Component {
    */
   async getAssets() {
     try {
+      const token = await AsyncStorage.getItem(Config.USER_TOKEN_KEY);
       let studioData = await AsyncStorage.getItem(Config.STUDIO_DATA_KEY);
 
       console.log(`studioData = ${studioData}`);
 
+      // populate studio info
       if (studioData && studioData.length) {
         studioData = JSON.parse(studioData);
         store.dispatch(setStudio(studioData));
       } else await store.dispatch(requestStudioData(false));
+
+      // populate user info
+      if (token) {
+        await store.dispatch(requestUserData());
+      }
+      this.setState({ fetchedAssets: true, userToken: token });
+
+      if (await AsyncStorage.getItem(Config.STUDIO_DATA_KEY)) await store.dispatch(requestStudioData(false));
+      if (token) {
+        await store.dispatch(syncUserEvents());
+        await store.dispatch(syncUserPasses());
+      }
 
     } catch(err) {
       console.log(`error --> ${err}`);
