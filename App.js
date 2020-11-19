@@ -65,6 +65,7 @@ class App extends React.Component {
       let studioData = await AsyncStorage.getItem(Config.STUDIO_DATA_KEY);
 
       console.log(`studioData = ${studioData}`);
+      console.log(`user token key = ${Config.USER_TOKEN_KEY}`);
 
       // populate studio info
       if (studioData && studioData.length) {
@@ -85,7 +86,7 @@ class App extends React.Component {
       }
 
     } catch(err) {
-      console.log(`error --> ${err}`);
+      console.log(`\n\n\nerror --> ${err}`);
       AsyncStorage.clear();
       this.setState({ fetchedAssets: false, errorOccurred: true });
 
@@ -94,6 +95,9 @@ class App extends React.Component {
   render() {
     console.log(`\n\n####### TESTING VARIABLES`);
     console.log(`fetchedAssets = ${this.state.fetchedAssets}`);
+    const initialRoute = `${this.state.userToken ? LANDING_ROUTE : VERIFY_ROUTE}`;
+    console.log(`initalRoute = ${initialRoute}`);
+    console.log(`userToken = ${this.state.userToken}`);
 
     return (
       <Provider store={store}>
