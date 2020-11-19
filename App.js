@@ -4,15 +4,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Config from './config.json';
+import LandingPage from './app/components/LandingPage';
 
-// make first screen the splash image
-// determine which screen to show next (login or homepage based on usertoken)
+import {
+  LANDING_ROUTE,
+} from './app/constants/RouteConstants';
+
+// update packages and start from scratch - only what we need
 // set up homepage
 // set up authorization -> take the homepage when successful
+// determine which screen to show next (login or homepage based on usertoken)
 // set the left side menu
 // set myAccount
-// set book
+// set up book
 // set myCalendar
+// make first screen the splash image
+// set up loader
 
 function HomeScreen({ navigation }) {
   return (
@@ -59,12 +66,12 @@ class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator 
-          initialRouteName="Home"
+          initialRouteName={LANDING_ROUTE}
           screenOptions={{
             headerShown: false,
             headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
             }}>
-          <Stack.Screen name="Home" component={HomeScreen}/>
+          <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
           <Stack.Screen name="Details" component={DetailsScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
