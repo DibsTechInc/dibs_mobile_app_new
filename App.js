@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
+import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import store from './app/store';
 import Config from './config.json';
 import LandingPage from './app/components/LandingPage';
 
@@ -21,17 +23,6 @@ import {
 // make first screen the splash image
 // set up loader
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Config.STUDIO_COLOR}}>
-      <Text>Home Screen</Text>
-      <Button 
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-        />
-    </View>
-  );
-}
 
 function DetailsScreen({ navigation }) {
   return (
@@ -64,17 +55,19 @@ class App extends React.Component {
   }
   render() {
     return (
-      <NavigationContainer>
-        <Stack.Navigator 
-          initialRouteName={LANDING_ROUTE}
-          screenOptions={{
-            headerShown: false,
-            headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
-            }}>
-          <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
-          <Stack.Screen name="Details" component={DetailsScreen}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator 
+            initialRouteName={LANDING_ROUTE}
+            screenOptions={{
+              headerShown: false,
+              headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
+              }}>
+            <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
+            <Stack.Screen name="Details" component={DetailsScreen}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }
