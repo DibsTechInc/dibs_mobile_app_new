@@ -8,6 +8,7 @@ import * as ScreenOrientation from 'expo-screen-orientation'
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import * as Sentry from 'sentry-expo';
+import Promise from 'bluebird';
 
 import store from './app/store';
 import Config from './config.json';
@@ -179,6 +180,10 @@ class App extends Component {
     await this.getFonts();
     await this.getAssets();
     await this.getImages();
+    
+    const promise = new Promise(() => {});
+
+    await promise.delay(Config.LOADING_QUOTES?.length && 2000);
     
     try {
       // can we get the state of the store
