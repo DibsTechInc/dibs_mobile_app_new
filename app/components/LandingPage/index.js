@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Config from '../../../config.json'
-import { getStudioName } from '../../selectors';
+import { getStudioName } from '../../selectors/StudioSelectors';
 
 
 class LandingPage extends Component {
