@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
 import styled from 'styled-components';
+import { Asset } from 'expo-asset';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 import store from './app/store';
 import Config from './config.json';
@@ -24,6 +26,36 @@ import {
   syncUserPasses,
   setStudio,
 } from './app/actions';
+
+
+// Image imports for caching
+import MainPage from './assets/img/main-page.png';
+import ActivityGrey from './assets/img/activity-grey.png';
+import ActivityWhite from './assets/img/activity-white.png';
+import CalendarGrey from './assets/img/calendar-grey.png';
+import CalendarWhite from './assets/img/calendar-white.png';
+import CartGrey from './assets/img/cart-grey.png';
+import CartWhite from './assets/img/cart-white.png';
+import MainGrey from './assets/img/main-grey.png';
+import Amex from './assets/img/stp_card_amex.png';
+import Diners from './assets/img/stp_card_diners.png';
+import Discover from './assets/img/stp_card_discover.png';
+import JCB from './assets/img/stp_card_jcb.png';
+import MasterCard from './assets/img/stp_card_mastercard.png';
+import Unknown from './assets/img/stp_card_unknown.png';
+import Visa from './assets/img/stp_card_visa.png';
+import TrashGrey from './assets/img/trash-grey.png';
+import UserGrey from './assets/img/user-grey.png';
+import UserWhite from './assets/img/user-white.png';
+import FilterWhite from './assets/img/filter-white.png';
+import CheckWhite from './assets/img/check-white.png';
+import AddToCalendar from './assets/img/add-to-calendar.png';
+import MyClassesIcon from './assets/img/my-classes.png';
+import ColumnSpotBooking from './assets/img/column-spotbooking.png';
+import DoorSpotBooking from './assets/img/door-spotbooking.png';
+
+
+
 
 const StyledLoadingPage = styled.View`
   align-items: center;
@@ -58,8 +90,10 @@ class App extends React.Component {
    * @returns {undefined}
    */
   async componentDidMount() {
+    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
     this.getFonts();
     await this.getAssets();
+    await this.getImages();
   }
   /**
    * @returns {undefined}
