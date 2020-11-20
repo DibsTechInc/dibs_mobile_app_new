@@ -7,6 +7,8 @@ import * as Font from 'expo-font';
 import styled from 'styled-components';
 import { Asset } from 'expo-asset';
 import * as ScreenOrientation from 'expo-screen-orientation';
+import * as Updates from 'expo-updates';
+import * as Sentry from 'sentry-expo';
 
 import store from './app/store';
 import Config from './config.json';
@@ -94,6 +96,22 @@ class App extends React.Component {
     this.getFonts();
     await this.getAssets();
     await this.getImages();
+  }
+  /**
+   * @returns {undefined}
+   */
+  async getUpdates() {
+    if (__DEV__) return;
+
+    try {
+      const update = await Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        Updates.reloadAsync();
+      }
+    } catch (err) {
+      console.log(err);
+      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+    }
   }
   /**
    * @returns {undefined}
