@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
-import { Text, View, Button } from "react-native";
+import { ScrollView, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Config from '../../../config.json'
-import { getStudioName } from '../../selectors/StudioSelectors';
+import Config from '../../../config.json';
+import {
+  FadeInView,
+  InputField,
+  MaterialButton,
+} from '../shared';
+
+import { validateEmail } from '../../actions/UserActions';
 
 import {
   LANDING_ROUTE,
@@ -21,15 +27,22 @@ class EnterEmail extends Component {
       super(props);
     }
     render() {
-      console.log(`this.props.studioName => ${this.props.studioName}`);
+      console.log('I am in the verify route');
       return (
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Config.STUDIO_COLOR}}>
-            <Text>This shall be the page to enter email</Text>
-            <Button 
-              title="Go back to Landing Page"
-              onPress={() => this.props.navigation.navigate(LANDING_ROUTE)}
-              />
-          </View>
+          <FadeInView>
+            <ScrollView keyboardShouldPersistTaps="always" contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: '70%', position: 'relative'}}>
+            <InputField
+              customFocus
+              label="What's your email?"
+              autoCapitalize="none"
+              containerStyle={{
+                marginBottom: 50,
+                width: 200,
+              }}
+              labelStyle={{ marginBottom: 20, textAlign: 'center' }}
+            />
+            </ScrollView>
+          </FadeInView>
       );
 
     }
@@ -37,15 +50,14 @@ class EnterEmail extends Component {
 
 EnterEmail.propTypes = {
   navigation: PropTypes.shape(),
-  studioName: PropTypes.string,
 };
 
 EnterEmail.navigationOptions = {
   headerMode: 'none',
 };
 
-const mapStateToProps = state => ({
-  studioName: getStudioName(state),
-})
+const mapDispatchToProps = {
+  validateEmail,
+};
 
-export default connect(mapStateToProps)(EnterEmail);
+export default connect(null, mapDispatchToProps)(EnterEmail);
