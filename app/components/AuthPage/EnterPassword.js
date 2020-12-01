@@ -37,7 +37,7 @@ import {
   LANDING_ROUTE,
 } from '../../constants/RouteConstants/index';
 
-// import TermsCheckBox from './TermsCheckBox';
+import TermsCheckBox from './TermsCheckBox';
 
 const StyledButtonView = styled.View`
   padding: 8px;
@@ -134,6 +134,7 @@ class EnterPassword extends PureComponent {
 
     await new Promise(res => this.setState({ isLoading: true, validInput: true }, res));
     const response = await new Promise(res => this.props.submitLogin(email, this.state.password, res));
+    console.log(`\n\nLogin was submitted`);
     await this.props.updateUserWaiverChecked(this.state.tAndC, this.props.userId);
     await new Promise(res => this.setState({ errorText: '' }, res));
 
@@ -197,15 +198,14 @@ class EnterPassword extends PureComponent {
             containerStyle={{ marginBottom: shouldShowTerms ? 10 : 30, width: 200, minWidth: 200 }}
             labelStyle={{ marginBottom: 20, textAlign: 'center' }}
           />
-          {/* Comment out for a moment while I figure this out */}
-          {/* {!!shouldShowTerms &&
+          {!!shouldShowTerms &&
             <TermsCheckBox
               studioName={this.props.studioName}
               tAndC={this.state.tAndC}
               tAndCError={this.state.tAndCError}
               onPress={this.handleOnCheck}
             />
-          } */}
+          }
           {!!this.state.errorText.length &&
             <ErrorText requiresWaiver={shouldShowTerms}>
               {this.state.errorText}
