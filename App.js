@@ -15,10 +15,12 @@ import Config from './config.json';
 import LandingPage from './app/components/LandingPage';
 import LinearLoader from './app/components/shared/LinearLoader';
 import EnterEmail from './app/components/AuthPage/EnterEmail';
+import EnterPassword from './app/components/AuthPage/EnterPassword';
 
 import {
   LANDING_ROUTE,
   VERIFY_ROUTE,
+  LOGIN_ROUTE,
 } from './app/constants/RouteConstants';
 
 import {
@@ -219,6 +221,7 @@ class App extends React.Component {
                 }}>
               <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
               <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
+              <Stack.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
             </Stack.Navigator>
           ) : (
             <StyledLoadingPage>
