@@ -16,11 +16,13 @@ import LandingPage from './app/components/LandingPage';
 import LinearLoader from './app/components/shared/LinearLoader';
 import EnterEmail from './app/components/AuthPage/EnterEmail';
 import EnterPassword from './app/components/AuthPage/EnterPassword';
+import MainPage from './app/components/MainPage';
 
 import {
   LANDING_ROUTE,
   VERIFY_ROUTE,
   LOGIN_ROUTE,
+  MAIN_ROUTE,
 } from './app/constants/RouteConstants';
 
 import {
@@ -33,7 +35,7 @@ import {
 
 
 // Image imports for caching
-import MainPage from './assets/img/main-page.png';
+import MainPageImg from './assets/img/main-page.png';
 import ActivityGrey from './assets/img/activity-grey.png';
 import ActivityWhite from './assets/img/activity-white.png';
 import CalendarGrey from './assets/img/calendar-grey.png';
@@ -136,7 +138,7 @@ class App extends React.Component {
    */
   async getImages() {
     await Asset.loadAsync([
-      MainPage,
+      MainPageImg,
       ActivityGrey,
       ActivityWhite,
       CalendarGrey,
@@ -222,6 +224,7 @@ class App extends React.Component {
               <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
               <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
               <Stack.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
+              <Stack.Screen name={MAIN_ROUTE} component={MainPage}/>
             </Stack.Navigator>
           ) : (
             <StyledLoadingPage>
