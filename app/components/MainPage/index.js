@@ -142,12 +142,16 @@ class MainPage extends React.PureComponent {
    */
   render() {
     console.log(`\n\nMAIN PAGE SON!!!! THIS IS THE ONE TO FOCUS ON FOR NOW`);
-    console.log('this is the main page');
+    console.log('this is the main page v1');
+    console.log(`\n\nhasUpcomingClasses ==> ${this.props.hasUpcomingClasses}`);
+    console.log(`\nfirstname = ${this.props.userFirstName}`);
+    console.log(`\nstudioName: ${this.props.studioName}`);
+    
     return (
       <FadeInView style={{ position: 'relative', backgroundColor: BLACK }}>
         <CustomStatusBar backgroundColor={'transparent'} barStyle="light-content" />
         <BackgroundImage source={backgroundImg} />
-        {/* <MainPageHeader>
+        <MainPageHeader>
           <BurgerIcon onPress={this.navigateToDrawer} style={{ marginLeft: 10, padding: 10 }} />
           <CartIcon iconColor={WHITE} />
         </MainPageHeader>
@@ -181,7 +185,7 @@ class MainPage extends React.PureComponent {
             />
           </IconRow>
         </Content>
-        {this.props.hasUpcomingClasses ? <UpcomingEventSlider /> : null} */}
+        {this.props.hasUpcomingClasses ? <UpcomingEventSlider /> : null}
       </FadeInView>
     );
   }
