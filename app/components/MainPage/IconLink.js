@@ -9,6 +9,9 @@ import { connect } from 'react-redux';
 import { WHITE } from '../../constants';
 import { HeavyText } from '../styled';
 
+// import NavigationStack from '../MainPage/NavigationStack';
+import { NAVIGATION_STACK_ROUTE } from '../../constants/RouteConstants';
+
 const Link = styled.TouchableOpacity`
   align-items: ${props => props.alignItems};
   justify-content: space-between;
@@ -41,7 +44,11 @@ class IconLink extends PureComponent {
   onPress() {
     // const navigation = useNavigation();
     console.log(`\n\nthis.props.route is: ${this.props.route}`);
-    this.props.navigation.navigate(this.props.route);
+    console.log(`NAVIGATION_STACK_ROUTE is ${NAVIGATION_STACK_ROUTE}`);
+    const screenName = this.props.route;
+    this.props.navigation.navigate(NAVIGATION_STACK_ROUTE, { screen: screenName });
+    // this.props.navigation.navigate(NAVIGATION_STACK_ROUTE, { screen: this.props.route });
+    // navigation.navigate('Root', { screen: 'Settings' });
   }
   /**
    * render
