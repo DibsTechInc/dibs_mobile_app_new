@@ -32,6 +32,7 @@ export const PROFILE_ROUTE = 'Profile';
 
 export const CART_ROUTE = 'Cart';
 export const DRAWER_OPEN = 'DrawerOpen';
+export const NAVIGATION_STACK_ROUTE = 'NavigationStack';
 
 export const RECEIPT_ROUTE = 'Receipt';
 export const BUY_ROUTE = 'Buy';
