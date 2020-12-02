@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+// import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
 import styled from 'styled-components';
@@ -86,7 +87,8 @@ const StyledLoadingPage = styled.View`
   flex: 5;
 `;
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 
 class App extends React.Component {
@@ -231,25 +233,25 @@ class App extends React.Component {
       <Provider store={store}>
         <NavigationContainer>
           {(this.state.fontLoaded) ? (
-            <Stack.Navigator 
+            <Drawer.Navigator 
               initialRouteName={initialRoute}
               screenOptions={{
                 headerShown: false,
                 headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
                 }}>
-              <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
-              <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
-              <Stack.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
-              <Stack.Screen name={MAIN_ROUTE} component={MainPage}/>
-              <Stack.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
-              <Stack.Screen name={FAQ_ROUTE} component={FAQ}/>
-              <Stack.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
-              <Stack.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions}/>
-              <Stack.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
-              <Stack.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
-              <Stack.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
-              <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
-            </Stack.Navigator>
+              <Drawer.Screen name={LANDING_ROUTE} component={LandingPage}/>
+              <Drawer.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
+              <Drawer.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
+              <Drawer.Screen name={MAIN_ROUTE} component={MainPage}/>
+              <Drawer.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
+              <Drawer.Screen name={FAQ_ROUTE} component={FAQ}/>
+              <Drawer.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
+              <Drawer.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions}/>
+              <Drawer.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
+              <Drawer.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
+              <Drawer.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
+              <Drawer.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
+            </Drawer.Navigator>
           ) : (
             <StyledLoadingPage>
                 <LinearLoader showQuote={this.state.fontLoaded} />
