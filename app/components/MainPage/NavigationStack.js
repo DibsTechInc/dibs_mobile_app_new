@@ -15,7 +15,26 @@ import EditCC from '../ProfilePage/EditCC';
 import EditPassword from '../ProfilePage/EditPassword';
 import FAQ from '../ProfilePage/FAQ';
 import ProfilePage from '../ProfilePage/ProfilePage';
+
+import {
+    LANDING_ROUTE,
+    VERIFY_ROUTE,
+    LOGIN_ROUTE,
+    MAIN_ROUTE,
+    SETTINGS_ROUTE,
+    TERMS_AND_CONDITIONS_ROUTE,
+    EDIT_USERNAME_ROUTE,
+    EDIT_EMAIL_ROUTE,
+    FAQ_ROUTE,
+    EDIT_PASSWORD_ROUTE,
+    EDIT_CC_ROUTE,
+    PROFILE_ROUTE,
+  } from '../../constants/RouteConstants';
+
+
 const Stack = createStackNavigator();
+
+
 
 /**
  * @class NavigationStack
@@ -38,7 +57,7 @@ class NavigationStack extends React.PureComponent {
    
     return (
         <Stack.Navigator 
-        initialRouteName={initialRoute}
+        initialRouteName={MAIN_ROUTE}
         screenOptions={{
           headerShown: false,
           headerStyle: { backgroundColor: Config.STUDIO_COLOR } 

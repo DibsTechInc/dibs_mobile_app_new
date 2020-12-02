@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
@@ -26,6 +26,7 @@ import EditCC from './app/components/ProfilePage/EditCC';
 import EditPassword from './app/components/ProfilePage/EditPassword';
 import FAQ from './app/components/ProfilePage/FAQ';
 import ProfilePage from './app/components/ProfilePage/ProfilePage';
+import NavigationStack from './app/components/MainPage/NavigationStack';
 
 import {
   LANDING_ROUTE,
@@ -40,7 +41,9 @@ import {
   EDIT_PASSWORD_ROUTE,
   EDIT_CC_ROUTE,
   PROFILE_ROUTE,
+  NAVIGATION_STACK_ROUTE,
 } from './app/constants/RouteConstants';
+
 
 import {
   requestStudioData,
@@ -78,8 +81,6 @@ import ColumnSpotBooking from './assets/img/column-spotbooking.png';
 import DoorSpotBooking from './assets/img/door-spotbooking.png';
 
 
-
-
 const StyledLoadingPage = styled.View`
   align-items: center;
   background: ${Config.STUDIO_COLOR};
@@ -89,7 +90,6 @@ const StyledLoadingPage = styled.View`
 
 // const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
 
 class App extends React.Component {
   /**
@@ -239,18 +239,19 @@ class App extends React.Component {
                 headerShown: false,
                 headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
                 }}>
+              <Drawer.Screen name={NAVIGATION_STACK_ROUTE} component={NavigationStack}/>
               <Drawer.Screen name={LANDING_ROUTE} component={LandingPage}/>
               <Drawer.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
               <Drawer.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
               <Drawer.Screen name={MAIN_ROUTE} component={MainPage}/>
-              <Drawer.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
+              {/* <Drawer.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
               <Drawer.Screen name={FAQ_ROUTE} component={FAQ}/>
               <Drawer.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
               <Drawer.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions}/>
               <Drawer.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
               <Drawer.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
               <Drawer.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
-              <Drawer.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
+              <Drawer.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/> */}
             </Drawer.Navigator>
           ) : (
             <StyledLoadingPage>

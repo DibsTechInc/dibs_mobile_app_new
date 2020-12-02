@@ -23,6 +23,7 @@ class LandingPage extends Component {
     }
     render() {
       console.log(`this.props.studioName => ${this.props.studioName}`);
+      console.log(`\n\nprops ----> ${JSON.stringify(this.props)}`);
       return (
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Config.STUDIO_COLOR}}>
             <Text>This is the landing page</Text>
