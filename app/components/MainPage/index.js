@@ -1,5 +1,7 @@
 import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DrawerActions } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -106,7 +108,7 @@ class MainPage extends React.PureComponent {
    */
   constructor() {
     super();
-    // this.navigateToDrawer = this.navigateToDrawer.bind(this);
+    this.navigateToDrawer = this.navigateToDrawer.bind(this);
     this.checkIfLoggedIn();
   }
   /**
@@ -126,16 +128,19 @@ class MainPage extends React.PureComponent {
   /**
    * @returns {undefined}
    */
-  // navigateToDrawer() {
-  //   console.log('navigateToDrawer');
+  navigateToDrawer() {
+    console.log('navigateToDrawer');
+    console.log(`\n\nprops ==> ${JSON.stringify(this.props)}`);
 
-  //   const keyType = this.props.navigation.state.key.split('-')[0];
-  //   if (keyType === 'id') {
-  //     this.props.navigation.pop();
-  //   } else {
-  //     this.props.navigation.openDrawer();
-  //   }
-  // }
+    const keyType = this.props.route.key.split('-')[0];
+    console.log(`keyType is ${keyType}`);
+    if (keyType === 'id') {
+      this.props.navigation.pop();
+    } else {
+      // this.props.navigation.openDrawer();
+      this.props.navigation.dispatch(DrawerActions.openDrawer());
+    }
+  }
   /**
    * render
    * @returns {JSX.Element} XML
