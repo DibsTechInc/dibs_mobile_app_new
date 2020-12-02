@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { withNavigation } from 'react-navigation';
+import { withNavigation } from '@react-navigation/compat';
+// import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
+import { connect } from 'react-redux';
 
 import { WHITE } from '../../constants';
 import { HeavyText } from '../styled';
@@ -23,7 +25,7 @@ const LinkText = styled(HeavyText)`
  * @class IconLink
  * @extends {React.PureComponent}
  */
-class IconLink extends React.PureComponent {
+class IconLink extends PureComponent {
   /**
    * @constructor
    * @constructs IconLink
@@ -37,6 +39,8 @@ class IconLink extends React.PureComponent {
    * @returns {undefined}
    */
   onPress() {
+    // const navigation = useNavigation();
+    console.log(`\n\nthis.props.route is: ${this.props.route}`);
     this.props.navigation.navigate(this.props.route);
   }
   /**
@@ -68,6 +72,7 @@ IconLink.defaultProps = {
 };
 
 IconLink.propTypes = {
+  navigation: PropTypes.shape(),
   renderIcon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   route: PropTypes.string.isRequired,
@@ -75,4 +80,5 @@ IconLink.propTypes = {
   alignItems: PropTypes.string.isRequired,
 };
 
-export default IconLink;
+
+export default withNavigation(IconLink);
