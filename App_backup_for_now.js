@@ -169,7 +169,7 @@ class App extends Component {
     } catch (err) {
       AsyncStorage.clear();
       store.dispatch(logFatalError(err));
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
       this.setState({ fetchedAssets: false, errorOccurred: true });
     }
   }
@@ -234,7 +234,7 @@ class App extends Component {
       }
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
     }
   }
   

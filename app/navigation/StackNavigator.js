@@ -37,7 +37,7 @@ import {
 const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
-    const initialRoute = `${this.state.userToken ? LANDING_ROUTE : VERIFY_ROUTE}`;
+    const initialRoute = `${this.state.userToken ? MAIN_ROUTE : VERIFY_ROUTE}`;
     return (
         <Stack.Navigator 
             initialRouteName={initialRoute}

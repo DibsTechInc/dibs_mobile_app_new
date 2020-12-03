@@ -32,11 +32,11 @@ export function requestFriendReferrals() {
         dispatch(setFriendReferrals(res.referrals));
       } else {
         console.log(res.message);
-        Sentry.captureException(new Error(res.message), { logger: 'my.module' });
+        // Sentry.captureException(new Error(res.message), { logger: 'my.module' });
       }
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
     }
   };
 }
@@ -69,7 +69,7 @@ export function sendFriendReferral(email) {
         dispatch(addFriendReferral(res.referral));
         dispatch(requestFriendReferrals());
       } else {
-        Sentry.captureException(new Error(res.message), { logger: 'my.module' });
+        // Sentry.captureException(new Error(res.message), { logger: 'my.module' });
       }
 
       console.log(res.message);
@@ -78,7 +78,7 @@ export function sendFriendReferral(email) {
       return res;
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
     }
   };
 }

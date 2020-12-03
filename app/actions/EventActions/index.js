@@ -68,7 +68,7 @@ export function requestEventData({ eventids } = {}, showAlert = true) {
       else if (showAlert) dispatch(enqueueApiError({ title: 'Error!', message: `${res.message}.` }));
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
       if (showAlert) dispatch(enqueueApiError({ title: 'Error!', message: `Something went wrong getting classes for ${getStudioName(getState())}` }));
     }
     dispatch(removeKeyFromFetchingEvents(currentDate));
@@ -92,10 +92,10 @@ export function getRoomForEvent(eventid) {
 
         return response.room;
       }
-      Sentry.captureException(new Error('Something went wrong getting the spot list for your event'));
+      // Sentry.captureException(new Error('Something went wrong getting the spot list for your event'));
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
     }
   };
 }

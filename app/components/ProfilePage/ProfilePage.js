@@ -106,7 +106,7 @@ class ProfilePage extends PureComponent {
       body: '',
     }).catch((err) => {
       console.log(err);
-      Sentry.captureException(new Error(err));
+      // Sentry.captureException(new Error(err));
       this.props.enqueueUserError({ title: 'Error!', message: 'Something went wrong opening your mail client' })
     });
   }

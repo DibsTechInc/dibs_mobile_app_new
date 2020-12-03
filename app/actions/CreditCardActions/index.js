@@ -60,7 +60,7 @@ export function requestCreditCardInfo(showAlert = true) {
       }
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
       if (showAlert) dispatch(enqueueApiError({ title: 'Error!', message: 'Something went wrong getting your billing information.' }));
       else throw err;
     }
@@ -113,7 +113,7 @@ export function updateCreditCard({ ccNum, ccCVC, expiration }) {
       }
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
       dispatch(enqueueApiError({
         title: 'Error!',
         message: 'Something went wrong updating your credit card.',

@@ -40,7 +40,7 @@ export function requestStudioData(showAlert = true) {
       return;
     } catch (err) {
       console.log(err);
-      Sentry.captureException(new Error(err.message), { logger: 'my.module' });
+      // Sentry.captureException(new Error(err.message), { logger: 'my.module' });
       if (showAlert) dispatch(enqueueApiError({ title: 'Something went wrong loading your app.' }));
       else throw err;
     }
