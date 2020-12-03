@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Config from '../../../config.json';
 import LandingPage from '../LandingPage';
@@ -49,7 +50,27 @@ class NavigationStack extends React.PureComponent {
    */
   constructor() {
     super();
+    this.state = {
+      userToken: null,
+    }
+  }
+  /**
+   * @returns {undefined}
+   */
+  async componentDidMount() {
     
+  }
+  /**
+   * @returns {undefined}
+   */
+  async getUserToken() {
+    try {
+      const token = await AsyncStorage.getItem(Config.USER_TOKEN_KEY);
+      this.setState({ userToken: token });
+
+    } catch(err) {
+      console.log(`\n\nerror from userToken --> ${err}`);
+    }
   }
   /**
    * render
@@ -59,10 +80,12 @@ class NavigationStack extends React.PureComponent {
     console.log(`\n\n`);
     console.log('inside of navigationStack');
     // console.log(`this.state.userToken = ${this.state.userToken}`);
+
+    const initialRouteNavigationStack = `${this.state.userToken ? MAIN_ROUTE : VERIFY_ROUTE}`;
    
     return (
         <Stack.Navigator 
-        initialRouteName={MAIN_ROUTE}
+        initialRouteName={initialRouteNavigationStack}
         screenOptions={{
           headerShown: false,
           headerStyle: { backgroundColor: Config.STUDIO_COLOR } 

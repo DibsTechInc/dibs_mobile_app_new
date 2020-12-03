@@ -228,7 +228,7 @@ class App extends React.Component {
   render() {
     console.log(`\n\n####### TESTING VARIABLES`);
     console.log(`fetchedAssets = ${this.state.fetchedAssets}`);
-    const initialRoute = `${this.state.userToken ? MAIN_ROUTE : LOGIN_STACK_ROUTE}`;
+    const initialRoute = `${this.state.userToken ? MAIN_ROUTE : NAVIGATION_STACK_ROUTE}`;
     console.log(`initalRoute = ${initialRoute}`);
     console.log(`userToken = ${this.state.userToken}`);
     console.log(`fonts loaded = ${this.state.fontLoaded}`);
@@ -246,7 +246,6 @@ class App extends React.Component {
               }}>
               <Drawer.Screen name={MAIN_ROUTE} component={MainPage}/>
               <Drawer.Screen name={NAVIGATION_STACK_ROUTE} component={NavigationStack}/>
-              <Drawer.Screen name={LOGIN_STACK_ROUTE} component={LoginStack}/>
             </Drawer.Navigator>
           ) : (
             <StyledLoadingPage>

@@ -88,14 +88,14 @@ class EnterEmail extends PureComponent {
         this.setState({ isLoading: false, errorText: 'Please enter a valid email address.'});
         this.props.screenProps.isLoading = false;
       } else {
-        // this.props.navigation.navigate(route, { email, fromReset: false });
-        this.props.navigation.navigate(LOGIN_STACK_ROUTE, {
-          screen: route,
-          params: {
-            email,
-            fromReset: false,
-          },
-        });
+        this.props.navigation.navigate(route, { email, fromReset: false });
+        // this.props.navigation.navigate(LOGIN_STACK_ROUTE, {
+        //   screen: route,
+        //   params: {
+        //     email,
+        //     fromReset: false,
+        //   },
+        // });
       }
    
     }
