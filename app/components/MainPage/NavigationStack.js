@@ -15,6 +15,7 @@ import EditCC from '../ProfilePage/EditCC';
 import EditPassword from '../ProfilePage/EditPassword';
 import FAQ from '../ProfilePage/FAQ';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import SchedulePage from '../SchedulePage';
 
 import {
     LANDING_ROUTE,
@@ -29,6 +30,7 @@ import {
     EDIT_PASSWORD_ROUTE,
     EDIT_CC_ROUTE,
     PROFILE_ROUTE,
+    SCHEDULE_ROUTE,
   } from '../../constants/RouteConstants';
 
 
@@ -74,6 +76,7 @@ class NavigationStack extends React.PureComponent {
         <Stack.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
         <Stack.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
         <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
+        <Stack.Screen name={SCHEDULE_ROUTE} component={SchedulePage}/>
       </Stack.Navigator>
     );
   }
