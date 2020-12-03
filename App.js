@@ -245,6 +245,7 @@ class App extends React.Component {
               headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
               }}>
               <Drawer.Screen name={MAIN_ROUTE} component={MainPage}/>
+              <Drawer.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
               <Drawer.Screen name={NAVIGATION_STACK_ROUTE} component={NavigationStack}/>
             </Drawer.Navigator>
           ) : (
