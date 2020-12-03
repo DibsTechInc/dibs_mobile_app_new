@@ -39,13 +39,13 @@ const Stack = createStackNavigator();
 
 
 /**
- * @class NavigationStack
+ * @class LoginStack
  * @extends {React.PureComponent}
  */
-class NavigationStack extends React.PureComponent {
+class LoginStack extends React.PureComponent {
   /**
    * @constructor
-   * @constructs NavigationStack
+   * @constructs LoginStack
    */
   constructor() {
     super();
@@ -57,32 +57,21 @@ class NavigationStack extends React.PureComponent {
    */
   render() {
     console.log(`\n\n`);
-    console.log('inside of navigationStack');
+    console.log('inside of LoginStack');
     // console.log(`this.state.userToken = ${this.state.userToken}`);
    
     return (
         <Stack.Navigator 
-        initialRouteName={MAIN_ROUTE}
+        initialRouteName={VERIFY_ROUTE}
         screenOptions={{
           headerShown: false,
           headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
           }}>
-        <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
         <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
         <Stack.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
-        <Stack.Screen name={MAIN_ROUTE} component={MainPage}/>
-        <Stack.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
-        <Stack.Screen name={FAQ_ROUTE} component={FAQ}/>
-        <Stack.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
-        <Stack.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions}/>
-        <Stack.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
-        <Stack.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
-        <Stack.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
-        <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
-        <Stack.Screen name={SCHEDULE_ROUTE} component={SchedulePage}/>
       </Stack.Navigator>
     );
   }
 }
 
-export default NavigationStack;
+export default LoginStack;

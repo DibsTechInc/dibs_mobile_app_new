@@ -5,6 +5,7 @@ export const VERIFY_ROUTE = 'Verify';
 export const LOGIN_ROUTE = 'Login';
 export const REGISTER_ROUTE = 'Register';
 export const PASSWORD_RESET_ROUTE = 'PasswordReset';
+export const SIDE_MENU_ROUTE = 'SideMenu';
 
 export const DRAWER_ROUTE = 'Drawer';
 export const ABOUT_ROUTE = 'About';
@@ -33,6 +34,7 @@ export const PROFILE_ROUTE = 'Profile';
 export const CART_ROUTE = 'Cart';
 export const DRAWER_OPEN = 'DrawerOpen';
 export const NAVIGATION_STACK_ROUTE = 'NavigationStack';
+export const LOGIN_STACK_ROUTE = 'LoginStack';
 
 export const RECEIPT_ROUTE = 'Receipt';
 export const BUY_ROUTE = 'Buy';

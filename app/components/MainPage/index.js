@@ -138,7 +138,7 @@ class MainPage extends React.PureComponent {
       this.props.navigation.pop();
     } else {
       // this.props.navigation.openDrawer();
-      this.props.navigation.dispatch(DrawerActions.openDrawer());
+      this.props.navigation.dispatch(DrawerActions.toggleDrawer());
     }
   }
   /**

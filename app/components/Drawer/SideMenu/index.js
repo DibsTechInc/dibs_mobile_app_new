@@ -1,3 +1,4 @@
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -15,6 +16,8 @@ import {
   REFER_A_FRIEND_ROUTE,
   MY_CLASSES_ROUTE,
 } from '../../../constants';
+import MainPage from '../../MainPage';
+
 import {
   getUsersFullName,
   getFormattedTotalCreditsWithFlashCredits,
@@ -63,6 +66,8 @@ const StyledHeavyText = styled(HeavyText)`
   max-width: 180px;
 `;
 
+const Drawer = createDrawerNavigator();
+
 /**
  * @class SideMenu
  * @extends {React.PureComponent}
@@ -90,6 +95,7 @@ class SideMenu extends React.PureComponent {
    */
   render() {
     return (
+      <Drawer.Navigator>
       <StyledContainer>
         <StyledCloseButtonContainer style={{ justifyContent: 'flex-start' }}>
           <XIcon
@@ -121,7 +127,8 @@ class SideMenu extends React.PureComponent {
             ]}
           />
         ) : undefined}
-        <NavLink
+        <Drawer.screen name="Main" component={MainPage}/>
+        {/* <NavLink
           label="Main"
           route={MAIN_ROUTE}
           renderIcon={() => <HomeIcon />}
@@ -155,8 +162,9 @@ class SideMenu extends React.PureComponent {
           label="Refer a Friend"
           route={REFER_A_FRIEND_ROUTE}
           renderIcon={() => <RafIcon />}
-        />
+        /> */}
       </StyledContainer>
+      </Drawer.Navigator>
     );
   }
 }

@@ -44,7 +44,6 @@ import {
   EDIT_CC_ROUTE,
   PROFILE_ROUTE,
   NAVIGATION_STACK_ROUTE,
-  LOGIN_STACK_ROUTE,
   SIDE_MENU_ROUTE,
   DRAWER_ROUTE,
 } from './app/constants/RouteConstants';
@@ -228,7 +227,7 @@ class App extends React.Component {
   render() {
     console.log(`\n\n####### TESTING VARIABLES`);
     console.log(`fetchedAssets = ${this.state.fetchedAssets}`);
-    const initialRoute = `${this.state.userToken ? MAIN_ROUTE : LOGIN_STACK_ROUTE}`;
+    const initialRoute = `${this.state.userToken ? DRAWER_ROUTE : LOGIN_ROUTE}`;
     console.log(`initalRoute = ${initialRoute}`);
     console.log(`userToken = ${this.state.userToken}`);
     console.log(`fonts loaded = ${this.state.fontLoaded}`);
@@ -239,14 +238,33 @@ class App extends React.Component {
         <NavigationContainer>
           {(this.state.fontLoaded) ? (
             <Drawer.Navigator 
-            initialRouteName={initialRoute}
-            screenOptions={{
-              headerShown: false,
-              headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
-              }}>
-              <Drawer.Screen name={MAIN_ROUTE} component={MainPage}/>
+              initialRouteName={initialRoute}
+              screenOptions={{
+                headerShown: false,
+                headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
+                }}>
+              <Drawer.Screen name={DRAWER_ROUTE} component={SideMenu}/>
               <Drawer.Screen name={NAVIGATION_STACK_ROUTE} component={NavigationStack}/>
-              <Drawer.Screen name={LOGIN_STACK_ROUTE} component={LoginStack}/>
+              <Drawer.Screen name={MAIN_ROUTE} component={MainPage} />
+              <Drawer.Screen name={LOGIN_ROUTE} component={LoginStack}/>
+              {/* <Drawer.Screen name={PROFILE_ROUTE} component={ProfilePage} />
+              <Drawer.Screen name={SCHEDULE_ROUTE} component={SchedulePage} />
+              <Drawer.Screen name={UPCOMING_CLASS_ROUTE} component={UpcomingClassesPage} />
+              <Drawer.Screen name={CART_ROUTE} component={CartPage} />
+              <Drawer.Screen name={RECEIPT_ROUTE} component={ReceiptPage} />
+              <Drawer.Screen name={BUY_ROUTE} component={BuyItemsPage} />
+              <Drawer.Screen name={REFER_A_FRIEND_ROUTE} component={ReferAFriendPage} />
+              <Drawer.Screen name={MY_CLASSES_ROUTE} component={MyClasses} />
+              <Drawer.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
+              <Drawer.Screen name={LOGIN_ROUTE} component={EnterPassword}/> */}
+              {/* <Drawer.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
+              <Drawer.Screen name={FAQ_ROUTE} component={FAQ}/>
+              <Drawer.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
+              <Drawer.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions}/>
+              <Drawer.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
+              <Drawer.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
+              <Drawer.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
+              <Drawer.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/> */}     
             </Drawer.Navigator>
           ) : (
             <StyledLoadingPage>

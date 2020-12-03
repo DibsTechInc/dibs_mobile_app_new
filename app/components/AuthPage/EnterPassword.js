@@ -116,8 +116,8 @@ class EnterPassword extends PureComponent {
     console.log(`\n\nInside of HandleOnPress ==> ${JSON.stringify(this.props)}`);
     const { email, accountDisabled } = this.props.route.params;
 
-    console.log(`\n\nEmail = ${email}`);
-    console.log(`\n\nAccountDisabled = ${accountDisabled}`);
+    console.log(`\n\nEmail v111 = ${email}`);
+    console.log(`\n\nAccountDisabled v777 = ${accountDisabled}`);
 
     if (this.props.studioRequiresWaiverSigned && !this.state.tAndC) {
       this.setState({ isLoading: false, errorText: 'You must agree to the Terms and Conditions' });
@@ -134,7 +134,7 @@ class EnterPassword extends PureComponent {
 
     await new Promise(res => this.setState({ isLoading: true, validInput: true }, res));
     const response = await new Promise(res => this.props.submitLogin(email, this.state.password, res));
-    console.log(`\n\nLogin was submitted`);
+    console.log(`\n\nLogin was submitted v123`);
     await this.props.updateUserWaiverChecked(this.state.tAndC, this.props.userId);
     await new Promise(res => this.setState({ errorText: '' }, res));
 
@@ -144,7 +144,16 @@ class EnterPassword extends PureComponent {
     }
 
     await Promise.delay(Config.LOADING_QUOTES?.length && 2000);
+    console.log(`/n/nheading into main_route ${MAIN_ROUTE}`);
     this.props.navigation.navigate(MAIN_ROUTE);
+
+    // this.props.navigation.navigate(LOGIN_STACK_ROUTE, {
+    //   screen: route,
+    //   params: {
+    //     email,
+    //     fromReset: false,
+    //   },
+    // });
   }
 
   /**
@@ -161,9 +170,11 @@ class EnterPassword extends PureComponent {
    */
   render() {
     console.log(`\n\nstate => ${JSON.stringify(this.state)}`);
-    console.log(`\n\nNavigation props => ${JSON.stringify(this.props.navigation)}`);
-    console.log(`\n\nProps => ${JSON.stringify(this.props)}`);
-    console.log(`\n\nRoute params ===> ${JSON.stringify(this.props.route.params)}`);
+    console.log(`\n\nNavigation props v111 => ${JSON.stringify(this.props.navigation)}`);
+    console.log(`\n\nProps v222 => ${JSON.stringify(this.props)}`);
+    console.log(`\n\nRoute params v333 ===> ${JSON.stringify(this.props.route.params)}`);
+
+    console.log(`\n\nthis.state.isLoading v444 ==> ${this.state.isLoading}`);
 
     if (this.state.isLoading) {
       return (
