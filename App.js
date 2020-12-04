@@ -242,6 +242,9 @@ class App extends React.Component {
           {(this.state.fontLoaded) ? (
             <Drawer.Navigator 
             initialRouteName={initialRoute}
+            drawerContentOptions={{
+              activeTintColor: '#e91e63',
+            }}
             screenOptions={{
               headerShown: false,
               headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
