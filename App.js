@@ -10,6 +10,7 @@ import { Asset } from 'expo-asset';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Updates from 'expo-updates';
 import * as Sentry from 'sentry-expo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import store from './app/store';
 import Config from './config.json';
@@ -244,9 +245,26 @@ class App extends React.Component {
               headerShown: false,
               headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
               }}>
-              <Drawer.Screen name={MAIN_ROUTE} component={MainPage}/>
+              <Drawer.Screen 
+              name={MAIN_ROUTE} 
+              component={MainPage}
+              options={{
+                drawerLabel: "Home"
+              }}/>
               <Drawer.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
-              <Drawer.Screen name={NAVIGATION_STACK_ROUTE} component={NavigationStack}/>
+              <Drawer.Screen 
+              name={NAVIGATION_STACK_ROUTE} 
+              component={NavigationStack}
+              options={{
+                drawerLabel: "Main",
+                drawerIcon: ({focused, size}) => (
+                  <Ionicons
+                    name="md-home"
+                    size={size}
+                    color={focused ? '#7cc' : '#ccc'}
+                  />
+                ),
+              }}/>
             </Drawer.Navigator>
           ) : (
             <StyledLoadingPage>
