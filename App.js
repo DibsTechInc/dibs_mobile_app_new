@@ -257,10 +257,10 @@ class App extends React.Component {
               component={NavigationStack}
               options={{
                 drawerLabel: "Main",
-                drawerIcon: (focused) => <Icon
+                drawerIcon: ({focused}) => <Icon
                   name="hot-tub"
                   size={30}
-                  color="#900"
+                  color={focused ? '#900' : '#ccc'}
                 />
               }}/>
             </Drawer.Navigator>
