@@ -11,6 +11,7 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Updates from 'expo-updates';
 import * as Sentry from 'sentry-expo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import IconAnt from 'react-native-vector-icons/AntDesign';
 
 import store from './app/store';
 import Config from './config.json';
@@ -259,6 +260,17 @@ class App extends React.Component {
                 drawerLabel: "Main",
                 drawerIcon: ({focused}) => <Icon
                   name="hot-tub"
+                  size={30}
+                  color={focused ? '#900' : '#ccc'}
+                />
+              }}/>
+              <Drawer.Screen 
+              name="Happiness" 
+              component={NavigationStack}
+              options={{
+                drawerLabel: "Happy",
+                drawerIcon: ({focused}) => <IconAnt
+                  name="calendar"
                   size={30}
                   color={focused ? '#900' : '#ccc'}
                 />
