@@ -10,7 +10,7 @@ import { Asset } from 'expo-asset';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Updates from 'expo-updates';
 import * as Sentry from 'sentry-expo';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import store from './app/store';
 import Config from './config.json';
@@ -257,13 +257,11 @@ class App extends React.Component {
               component={NavigationStack}
               options={{
                 drawerLabel: "Main",
-                drawerIcon: ({focused, size}) => (
-                  <Ionicons
-                    name="md-home"
-                    size={size}
-                    color={focused ? '#7cc' : '#ccc'}
-                  />
-                ),
+                drawerIcon: (focused) => <Icon
+                  name="hot-tub"
+                  size={30}
+                  color="#900"
+                />
               }}/>
             </Drawer.Navigator>
           ) : (
