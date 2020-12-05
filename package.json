@@ -19,9 +19,9 @@
     "bluebird": "^3.7.2",
     "currency-formatter": "^1.5.6",
     "decimal.js": "^10.2.1",
-    "expo": "^39.0.0",
+    "expo": "^39.0.5",
     "expo-asset": "~8.2.0",
-    "expo-cli": "^3.28.5",
+    "expo-cli": "^4.0.8",
     "expo-font": "~8.3.0",
     "expo-screen-orientation": "~2.0.0",
     "expo-updates": "~0.3.3",
@@ -40,7 +40,6 @@
     "react-native-dash": "0.0.11",
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-email": "^1.1.0",
-    "react-native-gesture-handler": "~1.7.0",
     "react-native-gifted-form": "^0.1.1",
     "react-native-keyboard-accessory": "^0.1.14",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
@@ -48,6 +47,7 @@
     "react-native-modalbox": "^2.0.2",
     "react-native-reanimated": "~1.13.0",
     "react-native-render-html": "^4.2.4",
+    "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
     "react-native-settings-list": "^1.8.0",
     "react-native-svg": "12.1.0",
@@ -65,7 +65,7 @@
     "sentry-expo": "^3.0.3",
     "stripe-client": "^1.1.5",
     "styled-components": "^5.2.1",
-    "react-native-safe-area-context": "3.1.4"
+    "react-native-gesture-handler": "~1.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3"
