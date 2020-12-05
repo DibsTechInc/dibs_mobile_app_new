@@ -13,7 +13,6 @@ import * as Sentry from 'sentry-expo';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import IconAnt from 'react-native-vector-icons/AntDesign';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import store from './app/store';
 import Config from './config.json';
