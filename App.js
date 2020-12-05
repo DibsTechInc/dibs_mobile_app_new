@@ -32,10 +32,16 @@ import ProfilePage from './app/components/ProfilePage/ProfilePage';
 import NavigationStack from './app/components/MainPage/NavigationStack';
 import LoginStack from './app/components/AuthPage/LoginStack';
 import SchedulePage from './app/components/SchedulePage';
+import UpcomingClassesPage from './app/components/UpcomingClassesPage';
+import BuyItemsPage from './app/components/BuyItemsPage';
+import ReferAFriendPage from './app/components/ReferAFriendPage';
+import MyClasses from './app/components/MyClasses';
+import CartPage from './app/components/CartPage';
 
 
 import {
   DARK_TEXT_GREY,
+  TEXT_GREY,
 } from './app/constants';
 
 import {
@@ -259,7 +265,7 @@ class App extends React.Component {
               labelStyle: {
                 fontFamily: 'studio-font',
                 fontSize: '14px',
-                color: {DARK_TEXT_GREY},
+                color: {TEXT_GREY},
               },
             }}
             screenOptions={{
@@ -281,7 +287,7 @@ class App extends React.Component {
                 drawerIcon: ({focused}) => <IconAnt
                   name="home"
                   size={25}
-                  color={focused ? Config.STUDIO_COLOR : DARK_TEXT_GREY}
+                  color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
                 />
               }}/>
               <Drawer.Screen 
@@ -292,18 +298,18 @@ class App extends React.Component {
                 drawerIcon: ({focused}) => <IconAnt
                   name="plus"
                   size={25}
-                  color={focused ? Config.STUDIO_COLOR : DARK_TEXT_GREY}
+                  color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
                 />
               }}/>
               <Drawer.Screen 
-              name="Happiness" 
-              component={NavigationStack}
+              name={UPCOMING_CLASS_ROUTE} 
+              component={UpcomingClassesPage}
               options={{
-                drawerLabel: "Happy",
+                drawerLabel: "Studio Schedule",
                 drawerIcon: ({focused}) => <IconAnt
                   name="calendar"
-                  size={30}
-                  color={focused ? '#900' : '#ccc'}
+                  size={25}
+                  color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
                 />
               }}/>
             </Drawer.Navigator>
