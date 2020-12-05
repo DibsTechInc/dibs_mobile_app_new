@@ -31,6 +31,7 @@ import FAQ from './app/components/ProfilePage/FAQ';
 import ProfilePage from './app/components/ProfilePage/ProfilePage';
 import NavigationStack from './app/components/MainPage/NavigationStack';
 import LoginStack from './app/components/AuthPage/LoginStack';
+import SchedulePage from './app/components/SchedulePage';
 
 
 import {
@@ -54,6 +55,11 @@ import {
   LOGIN_STACK_ROUTE,
   SIDE_MENU_ROUTE,
   DRAWER_ROUTE,
+  SCHEDULE_ROUTE,
+  UPCOMING_CLASS_ROUTE,
+  BUY_ROUTE,
+  MY_CLASSES_ROUTE,
+  REFER_A_FRIEND_ROUTE,
 } from './app/constants/RouteConstants';
 
 
@@ -274,8 +280,19 @@ class App extends React.Component {
                 drawerLabel: "Main",
                 drawerIcon: ({focused}) => <IconAnt
                   name="home"
-                  size={30}
-                  color={focused ? Config.STUDIO_COLOR : '#ccc'}
+                  size={25}
+                  color={focused ? Config.STUDIO_COLOR : DARK_TEXT_GREY}
+                />
+              }}/>
+              <Drawer.Screen 
+              name={SCHEDULE_ROUTE} 
+              component={SchedulePage}
+              options={{
+                drawerLabel: "Book",
+                drawerIcon: ({focused}) => <IconAnt
+                  name="plus"
+                  size={25}
+                  color={focused ? Config.STUDIO_COLOR : DARK_TEXT_GREY}
                 />
               }}/>
               <Drawer.Screen 
