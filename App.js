@@ -307,7 +307,7 @@ class App extends React.Component {
               name={UPCOMING_CLASS_ROUTE} 
               component={UpcomingClassesPage}
               options={{
-                drawerLabel: "Studio Schedule",
+                drawerLabel: "My Calendar",
                 drawerIcon: ({focused}) => <IconAnt
                   name="calendar"
                   size={25}
@@ -327,7 +327,7 @@ class App extends React.Component {
               }}/>
               <Drawer.Screen 
               name={BUY_ROUTE} 
-              component={ProfilePage}
+              component={BuyItemsPage}
               options={{
                 drawerLabel: this.props.showsCreditTiers ? 'Credits & Packages' : 'Packages',
                 drawerIcon: ({focused}) => <IconAnt
