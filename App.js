@@ -265,7 +265,7 @@ class App extends React.Component {
                 drawerIcon: ({focused}) => <IconAnt
                   name="home"
                   size={30}
-                  color={focused ? '#900' : '#ccc'}
+                  color={focused ? Config.STUDIO_COLOR : '#ccc'}
                 />
               }}/>
               <Drawer.Screen 
