@@ -260,12 +260,12 @@ class App extends React.Component {
             <Drawer.Navigator 
             initialRouteName={initialRoute}
             drawerContentOptions={{
-              activeTintColor: '#666',
+              activeTintColor: {TEXT_GREY},
+              inactiveTintColor: {TEXT_GREY},
               activeBackgroundColor: '#fff',
               labelStyle: {
                 fontFamily: 'studio-font',
-                fontSize: '14px',
-                color: {TEXT_GREY},
+                fontSize: 14,
               },
             }}
             screenOptions={{
