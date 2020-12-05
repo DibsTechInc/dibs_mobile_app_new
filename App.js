@@ -10,8 +10,10 @@ import { Asset } from 'expo-asset';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Updates from 'expo-updates';
 import * as Sentry from 'sentry-expo';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import IconAnt from 'react-native-vector-icons/AntDesign';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import store from './app/store';
 import Config from './config.json';
@@ -272,12 +274,12 @@ class App extends React.Component {
               headerShown: false,
               headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
               }}>
-              <Drawer.Screen 
+              {/* <Drawer.Screen 
               name={MAIN_ROUTE} 
               component={MainPage}
               options={{
                 drawerLabel: "Home"
-              }}/>
+              }}/> */}
               <Drawer.Screen 
               name={NAVIGATION_STACK_ROUTE} 
               component={NavigationStack}
@@ -316,7 +318,7 @@ class App extends React.Component {
               component={ProfilePage}
               options={{
                 drawerLabel: "Account",
-                drawerIcon: ({focused}) => <IconAnt
+                drawerIcon: ({focused}) => <Icon
                   name="account"
                   size={25}
                   color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
@@ -329,6 +331,28 @@ class App extends React.Component {
                 drawerLabel: this.props.showsCreditTiers ? 'Credits & Packages' : 'Packages',
                 drawerIcon: ({focused}) => <IconAnt
                   name="inbox"
+                  size={25}
+                  color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
+                />
+              }}/>
+              <Drawer.Screen 
+              name={MY_CLASSES_ROUTE} 
+              component={MyClasses}
+              options={{
+                drawerLabel: "My Classes",
+                drawerIcon: ({focused}) => <MatIcon
+                  name="fitness-center"
+                  size={25}
+                  color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
+                />
+              }}/>
+              <Drawer.Screen 
+              name={REFER_A_FRIEND_ROUTE} 
+              component={ReferAFriendPage}
+              options={{
+                drawerLabel: "Refer a Friend",
+                drawerIcon: ({focused}) => <MatIcon
+                  name="attach-money"
                   size={25}
                   color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
                 />
