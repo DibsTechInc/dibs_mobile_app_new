@@ -31,6 +31,7 @@ import {
     FAQ_ROUTE,
     EDIT_PASSWORD_ROUTE,
     EDIT_CC_ROUTE,
+    UPCOMING_CLASS_ROUTE,
     PROFILE_ROUTE,
     SCHEDULE_ROUTE,
   } from '../../constants/RouteConstants';
@@ -81,6 +82,7 @@ class NavigationStack extends React.PureComponent {
     console.log(`\n\n`);
     console.log('inside of navigationStack');
     // console.log(`this.state.userToken = ${this.state.userToken}`);
+    
 
     const initialRouteNavigationStack = `${this.state.userToken ? MAIN_ROUTE : VERIFY_ROUTE}`;
    
@@ -98,6 +100,7 @@ class NavigationStack extends React.PureComponent {
         <Stack.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
         <Stack.Screen name={FAQ_ROUTE} component={FAQ}/>
         <Stack.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
+        <Stack.Screen name={UPCOMING_CLASS_ROUTE} component={UpcomingClassesPage}/>
         <Stack.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions}/>
         <Stack.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
         <Stack.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
