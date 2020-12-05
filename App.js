@@ -243,7 +243,8 @@ class App extends React.Component {
             <Drawer.Navigator 
             initialRouteName={initialRoute}
             drawerContentOptions={{
-              activeTintColor: '#e91e63',
+              activeTintColor: '#666',
+              activeBackgroundColor: '#fff',
             }}
             screenOptions={{
               headerShown: false,
