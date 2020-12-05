@@ -260,8 +260,8 @@ class App extends React.Component {
             <Drawer.Navigator 
             initialRouteName={initialRoute}
             drawerContentOptions={{
-              activeTintColor: {TEXT_GREY},
-              inactiveTintColor: {TEXT_GREY},
+              activeTintColor: '#757575',
+              inactiveTintColor: '#757575',
               activeBackgroundColor: '#fff',
               labelStyle: {
                 fontFamily: 'studio-font',
@@ -278,7 +278,6 @@ class App extends React.Component {
               options={{
                 drawerLabel: "Home"
               }}/>
-              <Drawer.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
               <Drawer.Screen 
               name={NAVIGATION_STACK_ROUTE} 
               component={NavigationStack}
@@ -308,6 +307,28 @@ class App extends React.Component {
                 drawerLabel: "Studio Schedule",
                 drawerIcon: ({focused}) => <IconAnt
                   name="calendar"
+                  size={25}
+                  color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
+                />
+              }}/>
+              <Drawer.Screen 
+              name={PROFILE_ROUTE} 
+              component={ProfilePage}
+              options={{
+                drawerLabel: "Account",
+                drawerIcon: ({focused}) => <IconAnt
+                  name="account"
+                  size={25}
+                  color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
+                />
+              }}/>
+              <Drawer.Screen 
+              name={BUY_ROUTE} 
+              component={ProfilePage}
+              options={{
+                drawerLabel: this.props.showsCreditTiers ? 'Credits & Packages' : 'Packages',
+                drawerIcon: ({focused}) => <IconAnt
+                  name="inbox"
                   size={25}
                   color={focused ? Config.STUDIO_COLOR : TEXT_GREY}
                 />
