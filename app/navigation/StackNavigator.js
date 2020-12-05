@@ -49,9 +49,9 @@ const MainStackNavigator = () => {
             <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
             <Stack.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
             <Stack.Screen name={MAIN_ROUTE} component={MainPage}/>
-            <Stack.Screen name={SCHEDULE_ROUTE} component={SchedulePage}/>
+            {/* <Stack.Screen name={SCHEDULE_ROUTE} component={SchedulePage}/>
             <Stack.Screen name={UPCOMING_CLASS_ROUTE} component={UpcomingClassesPage}/>
-            <Stack.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
+            <Stack.Screen name={PROFILE_ROUTE} component={ProfilePage}/> */}
             <Stack.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>
             <Stack.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
             <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
