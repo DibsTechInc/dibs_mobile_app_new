@@ -44,6 +44,7 @@ import CartPage from './app/components/CartPage';
 import {
   DARK_TEXT_GREY,
   TEXT_GREY,
+  WHITE,
 } from './app/constants';
 
 import {
@@ -105,6 +106,13 @@ import AddToCalendar from './assets/img/add-to-calendar.png';
 import MyClassesIcon from './assets/img/my-classes.png';
 import ColumnSpotBooking from './assets/img/column-spotbooking.png';
 import DoorSpotBooking from './assets/img/door-spotbooking.png';
+
+const StyledContainer = styled.View`
+  background: ${WHITE};
+  paddingHorizontal: 20;
+  paddingTop: 20;
+  height: 100%;
+`;
 
 
 const StyledLoadingPage = styled.View`
@@ -274,12 +282,6 @@ class App extends React.Component {
               headerShown: false,
               headerStyle: { backgroundColor: Config.STUDIO_COLOR } 
               }}>
-              {/* <Drawer.Screen 
-              name={MAIN_ROUTE} 
-              component={MainPage}
-              options={{
-                drawerLabel: "Home"
-              }}/> */}
               <Drawer.Screen 
               name={NAVIGATION_STACK_ROUTE} 
               component={NavigationStack}
