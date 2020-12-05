@@ -49,7 +49,7 @@ class NavigationStack extends React.PureComponent {
         <Stack.Screen name={MAIN_ROUTE} component={MainPage}/>
         <Stack.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
         <Stack.Screen name={FAQ_ROUTE} component={FAQ}/>
-        <Stack.Screen name={PROFILE_ROUTE} component={ProfilePage}/>
+        {/* <Stack.Screen name={PROFILE_ROUTE} component={ProfilePage}/> */}
         <Stack.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions}/>
         <Stack.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail}/>
         <Stack.Screen name={EDIT_USERNAME_ROUTE} component={EditUserName}/>

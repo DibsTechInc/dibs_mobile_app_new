@@ -15,8 +15,9 @@ import EditUserName from '../ProfilePage/EditUserName';
 import EditCC from '../ProfilePage/EditCC';
 import EditPassword from '../ProfilePage/EditPassword';
 import FAQ from '../ProfilePage/FAQ';
-import ProfilePage from '../ProfilePage/ProfilePage';
+import { ProfilePage } from '../ProfilePage';
 import SchedulePage from '../SchedulePage';
+import UpcomingClassesPage from '../UpcomingClassesPage';
 
 import {
     LANDING_ROUTE,
