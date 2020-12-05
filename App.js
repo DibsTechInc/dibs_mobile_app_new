@@ -32,7 +32,6 @@ import ProfilePage from './app/components/ProfilePage/ProfilePage';
 import NavigationStack from './app/components/MainPage/NavigationStack';
 import LoginStack from './app/components/AuthPage/LoginStack';
 
-import { HeavyText } from './app/components/styled';
 
 import {
   DARK_TEXT_GREY,
@@ -99,12 +98,6 @@ const StyledLoadingPage = styled.View`
   background: ${Config.STUDIO_COLOR};
   justify-content: center;
   flex: 5;
-`;
-
-const StyledHeavyText = styled(HeavyText)`
-  color: ${DARK_TEXT_GREY};
-  font-size: 16;
-  max-width: 180px;
 `;
 
 // const Stack = createStackNavigator();
@@ -257,6 +250,11 @@ class App extends React.Component {
             drawerContentOptions={{
               activeTintColor: '#666',
               activeBackgroundColor: '#fff',
+              labelStyle: {
+                fontFamily: 'studio-font',
+                fontSize: '14px',
+                color: {DARK_TEXT_GREY},
+              },
             }}
             screenOptions={{
               headerShown: false,
