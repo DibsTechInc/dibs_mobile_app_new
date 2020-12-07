@@ -127,7 +127,7 @@ const Drawer = createDrawerNavigator();
 class App extends React.Component {
   /**
    * @constructor
-   * @cosntructs App
+   * @contructs App
    */
   constructor() {
     super();
