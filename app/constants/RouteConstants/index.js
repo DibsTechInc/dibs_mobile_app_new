@@ -30,6 +30,7 @@ export const SCHEDULE_ROUTE = 'Schedule';
 
 export const UPCOMING_CLASS_ROUTE = 'UpcomingClasses';
 export const PROFILE_ROUTE = 'Profile';
+export const HEADER_ROUTE = 'Header'
 
 export const CART_ROUTE = 'Cart';
 export const DRAWER_OPEN = 'DrawerOpen';

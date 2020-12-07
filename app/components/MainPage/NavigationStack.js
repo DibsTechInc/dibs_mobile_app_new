@@ -18,6 +18,7 @@ import FAQ from '../ProfilePage/FAQ';
 import { ProfilePage } from '../ProfilePage';
 import SchedulePage from '../SchedulePage';
 import UpcomingClassesPage from '../UpcomingClassesPage';
+import Header from '../Header';
 
 import {
     LANDING_ROUTE,
@@ -34,6 +35,7 @@ import {
     UPCOMING_CLASS_ROUTE,
     PROFILE_ROUTE,
     SCHEDULE_ROUTE,
+    HEADER_ROUTE,
   } from '../../constants/RouteConstants';
 
 
@@ -81,9 +83,8 @@ class NavigationStack extends React.PureComponent {
   render() {
     console.log(`\n\n`);
     console.log('inside of navigationStack');
-    // console.log(`this.state.userToken = ${this.state.userToken}`);
-    
-
+    console.log(`this.state.userToken = ${this.state.userToken}`);
+  
     const initialRouteNavigationStack = `${this.state.userToken ? MAIN_ROUTE : VERIFY_ROUTE}`;
    
     return (
@@ -107,6 +108,7 @@ class NavigationStack extends React.PureComponent {
         <Stack.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
         <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
         <Stack.Screen name={SCHEDULE_ROUTE} component={SchedulePage}/>
+        <Stack.Screen name={HEADER_ROUTE} component={Header}/>
       </Stack.Navigator>
     );
   }

@@ -257,7 +257,7 @@ class App extends React.Component {
     console.log(`\n\n####### TESTING VARIABLES`);
     console.log(`fetchedAssets = ${this.state.fetchedAssets}`);
     const initialRoute = `${this.state.userToken ? MAIN_ROUTE : NAVIGATION_STACK_ROUTE}`;
-    console.log(`initalRoute = ${initialRoute}`);
+    console.log(`\n\ninitalRoute = ${initialRoute}`);
     console.log(`userToken = ${this.state.userToken}`);
     console.log(`fonts loaded = ${this.state.fontLoaded}`);
     // console.log(`font function: ${Font.isLoaded()}`);
