@@ -231,7 +231,7 @@ class CartPage extends PureComponent {
 
     const renderPurchaseButton = (
       <SwipableButton
-        swipeText="Swipe to pay"
+        swipeText="Swipe from left to right to pay"
         notReadyForPurchase={!this.props.userHasPasses && notReadyForPurchase}
         onLeftButtonsActivate={this.handlePurchase}
       />

@@ -18,6 +18,9 @@ import FAQ from '../ProfilePage/FAQ';
 import { ProfilePage } from '../ProfilePage';
 import SchedulePage from '../SchedulePage';
 import UpcomingClassesPage from '../UpcomingClassesPage';
+import CartPage from '../CartPage';
+import ReceiptPage from '../ReceiptPage';
+import ClassDetail from '../MyClasses/ClassDetail';
 
 import {
     LANDING_ROUTE,
@@ -33,7 +36,12 @@ import {
     EDIT_CC_ROUTE,
     PROFILE_ROUTE,
     SCHEDULE_ROUTE,
+    CART_ROUTE,
+    RECEIPT_ROUTE,
+    CLASS_INFO_ROUTE,
+    PASSWORD_RESET_ROUTE,
   } from '../../constants/RouteConstants';
+import { PasswordReset } from '../AuthPage';
 
 
 const Stack = createStackNavigator();
@@ -83,6 +91,7 @@ class NavigationStack extends React.PureComponent {
     // console.log(`this.state.userToken = ${this.state.userToken}`);
 
     const initialRouteNavigationStack = `${this.state.userToken ? MAIN_ROUTE : VERIFY_ROUTE}`;
+    // const initialRouteNavigationStack = MAIN_ROUTE;
    
     return (
         <Stack.Navigator 
@@ -104,6 +113,10 @@ class NavigationStack extends React.PureComponent {
         <Stack.Screen name={EDIT_CC_ROUTE} component={EditCC}/>
         <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword}/>
         <Stack.Screen name={SCHEDULE_ROUTE} component={SchedulePage}/>
+        <Stack.Screen name={CART_ROUTE} component={CartPage}/>
+        <Stack.Screen name={RECEIPT_ROUTE} component={ReceiptPage}/>
+        <Stack.Screen name={CLASS_INFO_ROUTE} component={ClassDetail}/>
+        <Stack.Screen name={PASSWORD_RESET_ROUTE} component={PasswordReset}/>
       </Stack.Navigator>
     );
   }

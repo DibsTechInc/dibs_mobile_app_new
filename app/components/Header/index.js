@@ -8,6 +8,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import styled from 'styled-components';
+import { DrawerActions } from '@react-navigation/native';
 
 import Config from '../../../config.json';
 import { WHITE, FILTERS_SETTINGS, SCHEDULE_ROUTE } from '../../constants';
@@ -17,6 +18,7 @@ import {
   getStudioHasSpotBooking,
   getCartEvents,
 } from '../../selectors';
+
 import {
   setUpcomingEventSliderExpandedFalse,
   setAllFilters,
@@ -113,9 +115,23 @@ class Header extends React.PureComponent {
    * @returns {undefined}
    */
   goBack() {
+    const {index, routes, type} = this.props.navigation.dangerouslyGetState();
+    const fullData = this.props.navigation.dangerouslyGetState();
+    const currentScreen = routes[index].name;
+    const currentNavigatorType = type;
+    console.log(`fullData => ${JSON.stringify(fullData)}\n\n`);
+    console.log('current screen', currentScreen);
+    console.log(`type = ${currentNavigatorType}`);
+
     if (this.props.studioHasSpotBooking && this.props.cart.length) {
       this.props.setCartEventsData([]);
       return this.props.navigation.navigate(SCHEDULE_ROUTE);
+    }
+
+    if (currentNavigatorType == 'drawer') {
+      console.log(`\n\n`);
+      console.log('registered that it is a drawer');
+      return this.props.navigation.dispatch(DrawerActions.toggleDrawer());
     }
 
     if (
