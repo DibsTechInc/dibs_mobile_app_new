@@ -11,16 +11,16 @@ import {
   getPromoCodeData,
 } from '../../selectors';
 
-// import {
-//   clearPromoCodeData,
-//   clearPackagePromoCode,
-//   requestEventData,
-//   refreshUser,
-//   setTransactionsConfirmed,
-//   requestUserEvents,
-//   enqueueApiError,
-//   setUserForSpot,
-// } from '../';
+import {
+  clearPromoCodeData,
+  clearPackagePromoCode,
+  requestEventData,
+  refreshUser,
+  setTransactionsConfirmed,
+  requestUserEvents,
+  enqueueApiError,
+  setUserForSpot,
+} from '../';
 
 export const {
   addEventToCart,
