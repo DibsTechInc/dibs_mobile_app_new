@@ -267,7 +267,9 @@ class App extends React.Component {
         <NavigationContainer>
           {(this.state.fontLoaded) ? (
             <Drawer.Navigator 
-            initialRouteName={initialRoute}
+            initialRouteName={NAVIGATION_STACK_ROUTE}
+            headerMode="none"
+            options={{gestureEnabled: true}}
             drawerContentOptions={{
               activeTintColor: '#757575',
               inactiveTintColor: '#757575',
