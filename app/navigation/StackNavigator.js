@@ -36,6 +36,8 @@ import {
 
 const Stack = createStackNavigator();
 
+// THIS IS THE OLD STACKNAVIGATOR -- IGNORE FOR NOW
+
 const MainStackNavigator = () => {
     const initialRoute = `${this.state.userToken ? MAIN_ROUTE : VERIFY_ROUTE}`;
     return (
