@@ -221,16 +221,21 @@ function unDebouncedSubmitCartForPurchase() {
           purchasePlace: 'mobile app',
         },
       });
-
+      console.log(`\n\nResponse from checkout API call ====>>>>`);
+      console.log('not returning it all bc it is too long');
+      // console.log(JSON.stringify(res));
+      console.log(`\n\n`);
       if (res.success) {
         dispatch(clearCart());
         dispatch(refreshUser(res.user));
-        dispatch(setTransactionsConfirmed(res.transactions));
+        // dispatch(setTransactionsConfirmed(res.transactions)); // we know that this is causing the problem
         dispatch(setAllSpotBookingSpotsPickedFalse());
         await dispatch(requestUserEvents());
         dispatch(refreshCartEvents());
+        // BELOW THIS WAS ACTUALLY COMMENTED OUT
         // dispatch(requestUserTransactions()); implement with transaction history
         // dispatch(performTransactionAnalytics(resp.transactions)); not sure works with native
+        // ABOVE THIS WAS ACTUALLY COMMENTED OUT
         dispatch(clearPromoCodeData());
         dispatch(clearPackagePromoCode());
       } else {
