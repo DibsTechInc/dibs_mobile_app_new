@@ -119,7 +119,7 @@ class Header extends React.PureComponent {
     const fullData = this.props.navigation.dangerouslyGetState();
     const currentScreen = routes[index].name;
     const currentNavigatorType = type;
-    console.log(`fullData => ${JSON.stringify(fullData)}\n\n`);
+    console.log(`fullData FROM BOOKING CLASS => ${JSON.stringify(fullData)}\n\n`);
     console.log('current screen', currentScreen);
     console.log(`type = ${currentNavigatorType}`);
 
@@ -134,10 +134,21 @@ class Header extends React.PureComponent {
       return this.props.navigation.dispatch(DrawerActions.toggleDrawer());
     }
 
+    if (currentScreen == 'Receipt') {
+      console.log(`\n\n`);
+      console.log('registered that it is the receipt page');
+      return this.props.navigation.navigate('NavigationStack', { screen: 'Main' }); 
+    }
+    // if (
+    //   this.props.navigation.state.params
+    //   && this.props.navigation.state.params.previousRoute
+    // ) return this.props.navigation.navigate(this.props.navigation.state.params.previousRoute);
+
     if (
-      this.props.navigation.state.params
-      && this.props.navigation.state.params.previousRoute
-    ) return this.props.navigation.navigate(this.props.navigation.state.params.previousRoute);
+      this.props.route.params
+      && this.props.route.params.previousRoute
+    ) return this.props.navigation.navigate(this.props.route.params.previousRoute);
+    
     return this.props.navigation.goBack();
   }
   /**
