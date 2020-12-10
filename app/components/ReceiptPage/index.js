@@ -30,29 +30,17 @@ class ReceiptPage extends Component {
    * @returns {JSX} XML
    */
   render() {
-    console.log(`\n\n\nDO I MAKE IT TO THE RECEIPT PAGE EVER?`);
-    // next up --> test whether the props are good
-    // then bring in the fadeinview and all of the other stuff
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#6fbf98'}}>
-        <Text>This is the receipt page</Text>
-        <Button 
-          title="Click here to go to the email page"
-          onPress={() => this.props.navigation.navigate(VERIFY_ROUTE)}
+      <FadeInView>
+        <Header title="Order Summary" />
+          <PaginatedSlider
+            forReceiptPage
+            credits={this.props.credits}
+            packages={this.props.packages}
+            events={this.props.events}
           />
-      </View>
-  );
-    // return (
-    //   <FadeInView>
-    //     <Header title="Order Summary" />
-    //     <PaginatedSlider
-    //       forReceiptPage
-    //       credits={this.props.credits}
-    //       packages={this.props.packages}
-    //       events={this.props.events}
-    //     />
-    //   </FadeInView>
-    // );
+      </FadeInView>
+    );
   }
 }
 
