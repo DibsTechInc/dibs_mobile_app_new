@@ -245,7 +245,7 @@ class UpcomingEvent extends PureComponent {
             </EventInfo>
             {renderRightSideContent}
           </EventRow>
-          {!this.props.isTransactionHistory ? <Map
+          {(!this.props.isTransactionHistory && this.props.latitude) ? <Map
             latitude={this.props.latitude}
             longitude={this.props.longitude}
             locationName={this.props.locationName}
