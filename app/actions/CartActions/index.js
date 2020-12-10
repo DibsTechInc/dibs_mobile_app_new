@@ -206,7 +206,6 @@ function unDebouncedSubmitCartForPurchase() {
       dispatch(setCartPurchasingFalse());
       return;
     }
-
     try {
       const res = await dibsFetch('/api/user/checkout', {
         method: 'POST',
@@ -228,14 +227,14 @@ function unDebouncedSubmitCartForPurchase() {
       if (res.success) {
         dispatch(clearCart());
         dispatch(refreshUser(res.user));
-        // dispatch(setTransactionsConfirmed(res.transactions)); // we know that this is causing the problem
+        dispatch(setTransactionsConfirmed(res.transactions)); // this was causing the problem
         dispatch(setAllSpotBookingSpotsPickedFalse());
         await dispatch(requestUserEvents());
         dispatch(refreshCartEvents());
-        // BELOW THIS WAS ACTUALLY COMMENTED OUT
+        // BELOW THIS WAS ALREADY COMMENTED OUT
         // dispatch(requestUserTransactions()); implement with transaction history
         // dispatch(performTransactionAnalytics(resp.transactions)); not sure works with native
-        // ABOVE THIS WAS ACTUALLY COMMENTED OUT
+        // ABOVE THIS WAS ALREADY COMMENTED OUT
         dispatch(clearPromoCodeData());
         dispatch(clearPackagePromoCode());
       } else {

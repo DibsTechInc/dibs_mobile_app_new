@@ -114,7 +114,8 @@ class CartPage extends PureComponent {
   /**
    * @returns {undefined}
    */
-  componentDidMount() {
+  async componentDidMount() {
+    // await this.props.getConfirmationItems();
     if (this.props.events.length && this.props.packages.length) {
       this.props.enqueueNotice({
         title: 'Keep classes in your cart?',
@@ -126,11 +127,12 @@ class CartPage extends PureComponent {
       });
     }
   }
+  // trying this out
   /**
-   * @param {Object} props previous props
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  async componentDidUpdate(props) {
+    // await this.props.getConfirmationItems();
     if (
       (this.props.events.length || this.props.packages.length)
       && !props.events.length
@@ -138,13 +140,47 @@ class CartPage extends PureComponent {
     ) {
       this.props.clearPromoCodeData();
     }
-
     if (props.confirmedPurchases.length) {
-      this.props.navigation.navigate(RECEIPT_ROUTE);
+      console.log('sending to the receipt Page v23');
+      // next step: route to the correct place
     } else if (this.props.purchasing && !props.purchasing) {
+      console.log('about to endPurchase');
       this.endPurchase();
+    } else {
+      console.log('I have nothing else to say');
     }
   }
+  // remove depracated function
+  // /**
+  //  * @param {Object} props previous props
+  //  * @returns {undefined}
+  //  */
+  // componentWillReceiveProps(props) {
+  //   // alicia - getting error here WillReceiveProps
+  //   // move this to something else - componentDidUpdate or something else
+  //   // other error is the receipt route - it causes the app to crash
+  //   if (
+  //     (this.props.events.length || this.props.packages.length)
+  //     && !props.events.length
+  //     && !props.packages.length
+  //   ) {
+  //     this.props.clearPromoCodeData();
+  //   }
+  //   console.log('inside of willReceiveProps');
+  //   console.log(`\n\nin componentWillReceiveProps v2 this.props --> ${JSON.stringify(this.props)}`);
+  //   console.log(`\n\nAnd props are v2: ${JSON.stringify(props)}\n\n`);
+  //   if (props.confirmedPurchases.length) {
+  //     console.log('sending to the receipt Page');
+  //     // alicia - the problem is definitely the route - yay!
+  //     // this.props.navigation.navigate(RECEIPT_ROUTE);
+  //     // figure out the correct route and make that work. phew!
+  //   } else if (this.props.purchasing && !props.purchasing) {
+  //     console.log('about to endPurchase');
+  //     this.endPurchase();
+  //   } else {
+  //     console.log('I have nothing else to say');
+  //   }
+  // }
   /**
    * @returns {undefined}
    */
@@ -224,10 +260,12 @@ class CartPage extends PureComponent {
    */
   render() {
     const renderValueBackMessage = this.props.valueBack > 0 ?
-      `Book now to earn ${this.props.formattedValueBack} in credit back`
+      `Book now and earn ${this.props.formattedValueBack} in credit back`
       : `${this.props.events.length ? 'Book' : 'Buy'} now for ${this.props.formattedCartTotal}`;
 
     const notReadyForPurchase = !CartPage.getIsReadyForPurchase(this.props, this.state);
+
+    console.log(`\n\nnotReadyForPurchase = ${notReadyForPurchase}\n\n`);
 
     const renderPurchaseButton = (
       <SwipableButton
@@ -252,6 +290,7 @@ class CartPage extends PureComponent {
           />
         ))}
       </View>);
+
 
     const renderCartPackages = !!this.props.packages.length &&
       (<View>
