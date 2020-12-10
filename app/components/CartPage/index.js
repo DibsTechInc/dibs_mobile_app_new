@@ -150,7 +150,7 @@ class CartPage extends PureComponent {
       console.log('sending to the receipt Page v26');
       // next step: route to the correct place
       // return this.props.navigation.navigate(RECEIPT_ROUTE); // trying it with the return value
-      this.props.navigation.navigate('NavigationStack', { screen: 'Landing' }); 
+      this.props.navigation.navigate('NavigationStack', { screen: 'Receipt' }); 
     } else if (this.props.purchasing && !props.purchasing) {
       console.log('about to endPurchase');
       this.endPurchase();
