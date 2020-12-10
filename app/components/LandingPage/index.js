@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, Button } from "react-native";
+import { Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -15,7 +15,7 @@ import {
 class LandingPage extends Component {
   /**
      * @constructor
-     * @cosntructs LandingPage
+     * @constructs LandingPage
      * @param {Object} props for component 
      */
     constructor(props) {
