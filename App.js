@@ -10,12 +10,14 @@ import { Asset } from 'expo-asset';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Updates from 'expo-updates';
 import * as Sentry from 'sentry-expo';
+import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import IconAnt from 'react-native-vector-icons/AntDesign';
 
 import store from './app/store';
 import Config from './config.json';
+import ErrorPage from './app/components/ErrorPage';
 import LandingPage from './app/components/LandingPage';
 import LinearLoader from './app/components/shared/LinearLoader';
 import EnterEmail from './app/components/AuthPage/EnterEmail';
@@ -78,6 +80,8 @@ import {
   syncUserEvents,
   syncUserPasses,
   setStudio,
+  logFatalError,
+  removeExpiredEvents,
 } from './app/actions';
 
 
@@ -138,6 +142,7 @@ class App extends React.Component {
       userToken: null,
       fontLoaded: false,
       imageLoaded: false,
+      isReady: false,
     }
   }
   // async _loadFontsAsync() {
@@ -250,20 +255,41 @@ class App extends React.Component {
     } catch(err) {
       console.log(`\n\n\nerror --> ${err}`);
       AsyncStorage.clear();
+      store.dispatch(logFatalError(err));
       this.setState({ fetchedAssets: false, errorOccurred: true });
 
     }
   }
+  /**
+   * @param {Error} err that was thrown
+   * @returns {undefined}
+   */
+  componentDidCatch(err) {
+    console.log(err);
+    store.dispatch(logFatalError(err));
+    this.setState({ errorOccurred: true });
+  }
   render() {
-    console.log(`\n\n####### TESTING VARIABLES`);
-    console.log(`fetchedAssets = ${this.state.fetchedAssets}`);
-    const initialRoute = `${this.state.userToken ? MAIN_ROUTE : NAVIGATION_STACK_ROUTE}`;
-    console.log(`initalRoute = ${initialRoute}`);
-    console.log(`userToken = ${this.state.userToken}`);
-    console.log(`fonts loaded = ${this.state.fontLoaded}`);
-    // console.log(`font function: ${Font.isLoaded()}`);
-    const state = store.getState();
-    console.log(`state v76 => ${JSON.stringify(state)}`);
+    if (this.state.errorOccurred) {
+      return (
+        <Provider store={store}>
+          <View style={{ flex: 1 }}>
+            <ErrorPage />
+            <Modal />
+          </View>
+        </Provider>
+      )
+    }
+
+    // console.log(`\n\n####### TESTING VARIABLES`);
+    // console.log(`fetchedAssets = ${this.state.fetchedAssets}`);
+    // const initialRoute = `${this.state.userToken ? MAIN_ROUTE : NAVIGATION_STACK_ROUTE}`;
+    // console.log(`initalRoute = ${initialRoute}`);
+    // console.log(`userToken = ${this.state.userToken}`);
+    // console.log(`fonts loaded = ${this.state.fontLoaded}`);
+    // // console.log(`font function: ${Font.isLoaded()}`);
+    // const state = store.getState();
+    // console.log(`state v76 => ${JSON.stringify(state)}`);
 
     return (
       <Provider store={store}>

@@ -67,6 +67,7 @@ export default class Notification extends React.PureComponent {
           toValue: 1,
           duration: 500,
           easing: Easing.bezier(0.2, 0.15, 0.13, 1.07),
+          useNativeDriver: false,
         }
       ).start(res));
       if (this.canSetState) await new Promise(res => this.setState({ animValue: new Animated.Value(0), showPulse: false }, res));
