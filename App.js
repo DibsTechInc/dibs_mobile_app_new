@@ -38,6 +38,7 @@ import BuyItemsPage from './app/components/BuyItemsPage';
 import ReferAFriendPage from './app/components/ReferAFriendPage';
 import MyClasses from './app/components/MyClasses';
 import CartPage from './app/components/CartPage';
+import Modal from './app/components/Modal';
 
 
 import {
@@ -261,6 +262,8 @@ class App extends React.Component {
     console.log(`userToken = ${this.state.userToken}`);
     console.log(`fonts loaded = ${this.state.fontLoaded}`);
     // console.log(`font function: ${Font.isLoaded()}`);
+    const state = store.getState();
+    console.log(`state v76 => ${JSON.stringify(state)}`);
 
     return (
       <Provider store={store}>
@@ -366,6 +369,7 @@ class App extends React.Component {
                 <LinearLoader showQuote={this.state.fontLoaded} />
               </StyledLoadingPage>
           )}
+          <Modal />
         </NavigationContainer>
       </Provider>
     );
