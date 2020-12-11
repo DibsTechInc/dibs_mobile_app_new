@@ -13,7 +13,8 @@ class ClassDetail extends React.PureComponent {
    * @returns {JSX.Element} HTML
    */
   render() {
-    const { params } = this.props.navigation.state;
+    console.log(`classDetail ===> ${JSON.stringify(this.props.route)}`);
+    const { params } = this.props.route;
     return (
       <UpcomingEvent
         hasHeader

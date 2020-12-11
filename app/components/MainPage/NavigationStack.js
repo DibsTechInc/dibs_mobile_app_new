@@ -40,6 +40,7 @@ import {
     RECEIPT_ROUTE,
     CLASS_INFO_ROUTE,
     PASSWORD_RESET_ROUTE,
+    UPCOMING_CLASS_ROUTE,
   } from '../../constants/RouteConstants';
 import { PasswordReset } from '../AuthPage';
 
@@ -103,6 +104,7 @@ class NavigationStack extends React.PureComponent {
         <Stack.Screen name={LANDING_ROUTE} component={LandingPage}/>
         <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail}/>
         <Stack.Screen name={LOGIN_ROUTE} component={EnterPassword}/>
+        <Stack.Screen name={UPCOMING_CLASS_ROUTE} component={UpcomingClassesPage}/>
         <Stack.Screen name={MAIN_ROUTE} component={MainPage}/>
         <Stack.Screen name={SETTINGS_ROUTE} component={UserSettings}/>
         <Stack.Screen name={FAQ_ROUTE} component={FAQ}/>

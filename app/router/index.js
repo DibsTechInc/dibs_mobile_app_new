@@ -30,7 +30,7 @@ import {
 } from '../components/AuthPage';
 
 import LandingPage from '../components/LandingPage';
-import Drawer from '../components/Drawer';
+// import Drawer from '../components/Drawer';
 
 import {
   UserSettings,
@@ -52,7 +52,7 @@ function myStack(token) {
     options={{gestureEnabled: true}}
     >
     <Stack.Screen name={LANDING_ROUTE} component={LandingPage} options={{ gestureEnabled: false }}/>
-    <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail} />
+    {/* <Stack.Screen name={VERIFY_ROUTE} component={EnterEmail} />
     <Stack.Screen name={LOGIN_ROUTE} component={EnterPassword} />
     <Stack.Screen name={REGISTER_ROUTE} component={Signup} />
     <Stack.Screen name={TERMS_AND_CONDITIONS_ROUTE} component={TermsAndConditions} />
@@ -63,7 +63,7 @@ function myStack(token) {
     <Stack.Screen name={EDIT_EMAIL_ROUTE} component={EditEmail} />
     <Stack.Screen name={EDIT_CC_ROUTE} component={EditCC} />
     <Stack.Screen name={CLASS_INFO_ROUTE} component={ClassDetail} />
-    <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword} />
+    <Stack.Screen name={EDIT_PASSWORD_ROUTE} component={EditPassword} /> */}
   </Stack.Navigator>
 
   );

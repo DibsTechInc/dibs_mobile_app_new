@@ -46,7 +46,8 @@ class Map extends React.PureComponent {
    * @param {Object} props component is about to get
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
+  // componentWillReceiveProps(props) {
     if (props.expanded !== this.props.expanded) {
       this.map.animateToCoordinate({
         latitude: this.props.latitude,

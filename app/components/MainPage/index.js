@@ -58,10 +58,17 @@ const MainPageHeader = styled(SpaceBetweenRow)`
   margin-top: ${isIphoneX() * 15};
 `;
 
+// const Content = styled.View`
+//   flex: 1;
+//   justify-content: ${props => (props.hasUpcomingClasses ? 'center' : 'flex-end')};
+//   margin-bottom: ${props => (props.hasUpcomingClasses ? 190 : (HEIGHT / 10))};
+//   padding-horizontal: ${WIDTH / 10};
+// `;
+
 const Content = styled.View`
   flex: 1;
-  justify-content: ${props => (props.hasUpcomingClasses ? 'center' : 'flex-end')};
-  margin-bottom: ${props => (props.hasUpcomingClasses ? 190 : (HEIGHT / 10))};
+  justify-content: ${props => (props.hasUpcomingClasses ? 'flex-end' : 'flex-end')};
+  margin-bottom: ${props => (props.hasUpcomingClasses ? (HEIGHT / 10) : (HEIGHT / 10))};
   padding-horizontal: ${WIDTH / 10};
 `;
 
@@ -190,7 +197,7 @@ class MainPage extends React.PureComponent {
             />
           </IconRow>
         </Content>
-        {this.props.hasUpcomingClasses ? <UpcomingEventSlider /> : null}
+        {/* {this.props.hasUpcomingClasses ? <UpcomingEventSlider /> : null} */}
       </FadeInView>
     );
   }

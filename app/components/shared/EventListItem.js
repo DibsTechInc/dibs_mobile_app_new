@@ -65,7 +65,8 @@ class EventListItem extends React.PureComponent {
    * @param {Object} props component will get
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  // componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
     if (props.quantity !== this.props.quantity && props.quantity) {
       this.showOverlayAndStartTimer();
     }

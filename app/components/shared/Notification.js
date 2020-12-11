@@ -57,7 +57,8 @@ export default class Notification extends React.PureComponent {
    * @param {Object} props component will receive
    * @returns {undefined}
    */
-  async componentWillReceiveProps(props) {
+  // async componentWillReceiveProps(props) {
+  async componentDidUpdate(props) {
     if (props.notificationCount && props.notificationCount !== this.props.notificationCount) {
       if (this.canSetState) await new Promise(res => this.setState({ showPulse: true }, res));
       await new Promise(res => Animated.timing(

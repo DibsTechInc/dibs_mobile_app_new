@@ -3,7 +3,7 @@ import Sentry from 'sentry-expo';
 import moment from 'moment-timezone';
 
 import Config from '../../../config.json';
-// import { refreshUser, enqueueApiError } from '../';
+import { refreshUser, enqueueApiError } from '../';
 import { setPastEvents } from '../PastEventsActions';
 
 export const {

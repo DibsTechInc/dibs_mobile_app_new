@@ -101,7 +101,13 @@ class MyClasses extends React.PureComponent {
    */
   handleOnPressClassDetail(props, classListName) {
     const isTransactionHistory = classListName === 'pastEvents';
-    this.props.navigation.navigate(CLASS_INFO_ROUTE, { ...props, isTransactionHistory });
+    // this.props.navigation.navigate('NavigationStack', {screen: CLASS_INFO_ROUTE}
+    // CLASS_INFO_ROUTE, { ...props, isTransactionHistory });
+
+    this.props.navigation.navigate('NavigationStack', {
+      screen: CLASS_INFO_ROUTE,
+      params: { ...props, isTransactionHistory },
+    });
   }
   /**
    * render

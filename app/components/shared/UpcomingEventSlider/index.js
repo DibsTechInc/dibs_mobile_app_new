@@ -67,7 +67,8 @@ class UpcomingClassSlider extends React.PureComponent {
    * @param {Object} props component is about to get
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  // componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
     if (props.expanded && !this.props.expanded) this.handleDragUp();
     if (!props.expanded && this.props.expanded) this.handleDragDown();
   }

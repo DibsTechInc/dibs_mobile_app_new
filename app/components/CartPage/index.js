@@ -132,13 +132,6 @@ class CartPage extends PureComponent {
    * @returns {undefined}
    */
   async componentDidUpdate(props) {
-    const {index, routes, type} = this.props.navigation.dangerouslyGetState();
-    const fullData = this.props.navigation.dangerouslyGetState();
-    const currentScreen = routes[index].name;
-    const currentNavigatorType = type;
-    console.log(`fullData => ${JSON.stringify(fullData)}\n\n`);
-    console.log('current screen dec 10:', currentScreen);
-    console.log(`type = ${currentNavigatorType}`);
     if (
       (this.props.events.length || this.props.packages.length)
       && !props.events.length
@@ -147,16 +140,10 @@ class CartPage extends PureComponent {
       this.props.clearPromoCodeData();
     }
     if (props.confirmedPurchases.length) {
-      console.log('sending to the receipt Page v26');
-      // next step: route to the correct place
-      // return this.props.navigation.navigate(RECEIPT_ROUTE); // trying it with the return value
       this.props.navigation.navigate('NavigationStack', { screen: 'Receipt' }); 
     } else if (this.props.purchasing && !props.purchasing) {
-      console.log('about to endPurchase');
       this.endPurchase();
-    } else {
-      console.log('I have nothing else to say');
-    }
+    } 
   }
   // remove depracated function
   // /**

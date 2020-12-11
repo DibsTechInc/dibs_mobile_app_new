@@ -119,7 +119,7 @@ class Header extends React.PureComponent {
     const fullData = this.props.navigation.dangerouslyGetState();
     const currentScreen = routes[index].name;
     const currentNavigatorType = type;
-    console.log(`fullData FROM BOOKING CLASS => ${JSON.stringify(fullData)}\n\n`);
+    // console.log(`fullData FROM BOOKING CLASS => ${JSON.stringify(fullData)}\n\n`);
     console.log('current screen', currentScreen);
     console.log(`type = ${currentNavigatorType}`);
 
@@ -142,14 +142,21 @@ class Header extends React.PureComponent {
     if (
       this.props.navigation.state.params
       && this.props.navigation.state.params.previousRoute
-    ) return this.props.navigation.navigate(this.props.navigation.state.params.previousRoute);
+    ) {
+    console.log('registered that this is the go back screen v11');
+    console.log(JSON.stringify(this.props.navigation.state.params));
+    return this.props.navigation.goBack();
+    // return this.props.navigation.navigate(this.props.navigation.state.params.previousRoute);
+    }
 
     // if (
     //   this.props.route.params
     //   && this.props.route.params.previousRoute
     // ) return this.props.navigation.navigate(this.props.route.params.previousRoute);
     
+    // return this.props.navigation.navigate('NavigationStack', { screen: currentScreen }); 
     return this.props.navigation.goBack();
+
   }
   /**
    * @returns {object} filterSettings the saved filters settings
@@ -171,9 +178,9 @@ class Header extends React.PureComponent {
     const fullData = this.props.navigation.dangerouslyGetState();
     const currentScreen = routes[index].name;
     const currentNavigatorType = type;
-    console.log(`fullData FROM BOOKING CLASS => ${JSON.stringify(fullData)}\n\n`);
+    // console.log(`fullData FROM BOOKING CLASS => ${JSON.stringify(fullData)}\n\n`);
     console.log('current screen', currentScreen);
-    console.log(`type = ${currentNavigatorType}`);
+    console.log(`\n\ntype = ${currentNavigatorType}\n\n`);
     let shouldHideCart = false;
     if (currentScreen == 'Receipt') {
       shouldHideCart = true;

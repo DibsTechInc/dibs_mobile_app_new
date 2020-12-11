@@ -127,7 +127,7 @@ class EnterEmail extends PureComponent {
             <KeyboardAccessoryView
             alwaysVisible
             hideBoarder
-            style={{ backgroundColor: DEFAULT_BG, margineBottom: 25 }}
+            style={{ backgroundColor: DEFAULT_BG, marginBottom: 25 }}
             >
               <StyledButtonView>
                 <MaterialButton

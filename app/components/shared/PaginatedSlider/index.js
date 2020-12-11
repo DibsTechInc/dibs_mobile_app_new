@@ -20,11 +20,19 @@ class PaginatedSlider extends PureComponent {
    * @param {Object} props for component
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
+    console.log(`\n\nIn componentDidUpdate`)
     if (props.expanded && !props.events.length) {
+      console.log('testing upcomingEventSlider');
       this.props.setUpcomingEventSliderExpandedFalse();
     }
   }
+  // componentWillReceiveProps(props) {
+  //   console.log(`\n\nIn componentWillReceiveProps`)
+  //   if (props.expanded && !props.events.length) {
+  //     this.props.setUpcomingEventSliderExpandedFalse();
+  //   }
+  // }
   /**
    * @returns {JSX} XML
    */

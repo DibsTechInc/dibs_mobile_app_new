@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { View, ScrollView } from 'react-native';
+import { withNavigation } from '@react-navigation/compat';
 import { connect } from 'react-redux';
 import HTML from 'react-native-render-html';
 import Config from '../../../../../config.json';
@@ -82,7 +83,8 @@ class UpcomingEvent extends PureComponent {
    * @param {Object} props component is about to get
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  // componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
     if (props.expanded !== this.props.expanded) {
       this.scrollView.scrollTo({ y: 0, animated: false });
     }
@@ -123,6 +125,7 @@ class UpcomingEvent extends PureComponent {
    * @returns {undefined}
    */
   startCancel() {
+    console.log(`\n\nregistered that drop button was pressed`);
     const titleMesage = this.props.isWaitlist ? 'Remove from waitlist?' : 'Drop this class?';
     const baseNotice = `Click 'yes' to drop ${this.props.name}.`;
     const extraNotice = this.displayAdditionalNotice();
@@ -141,7 +144,8 @@ class UpcomingEvent extends PureComponent {
    */
   async removeFromClass() {
     if (this.props.isWaitlist) return this.props.removeFromWaitlist(this.props.eventid);
-    return this.props.dropUserFromEvent(this.props.eventid);
+    await this.props.dropUserFromEvent(this.props.eventid);
+    return this.props.navigation.navigate('NavigationStack', { screen: 'Main' }); 
   }
   /**
    * @returns {JSX} XML
@@ -288,6 +292,7 @@ UpcomingEvent.defaultProps = {
 };
 
 UpcomingEvent.propTypes = {
+  navigation: PropTypes.shape().isRequired,
   forReceiptPage: PropTypes.bool,
   formattedSubtotal: PropTypes.string,
   name: PropTypes.string,
@@ -347,4 +352,4 @@ const mapDispatchToProps = {
   enqueueNotice,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpcomingEvent);
+export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(UpcomingEvent));

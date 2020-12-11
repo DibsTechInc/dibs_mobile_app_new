@@ -53,7 +53,8 @@ class CreditLoadItem extends React.PureComponent {
    * @param {Object} props for component
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  // componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
     if (this.props.quantity !== props.quantity && props.quantity) {
       this.showOverlayAndStartTimer();
     }

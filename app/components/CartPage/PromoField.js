@@ -30,7 +30,8 @@ class PromoField extends PureComponent {
    * @param {Object} props component will receive
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  // componentWillReceiveProps(props) {
+    componentDidUpdate(props) {
     if (!this.props.errorMessage && props.errorMessage) {
       if (this.clearErrorTimer) clearTimeout(this.clearErrorTimer);
       this.clearErrorTimer = setTimeout(() => {

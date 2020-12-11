@@ -39,7 +39,8 @@ class CalendarDay extends PureComponent {
    * @param {Object} props component will get
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  // componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
     if (this.props.selected === props.selected) return null;
     if (props.selected) return this.animate(1);
     return this.animate(0);

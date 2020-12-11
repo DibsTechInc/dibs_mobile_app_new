@@ -61,7 +61,8 @@ class Package extends React.PureComponent {
    * @param {Object} props for component
    * @returns {undefined}
    */
-  componentWillReceiveProps(props) {
+  componentDidUpdate(props) {
+  // componentWillReceiveProps(props) {
     if (this.props.quantity !== props.quantity && props.quantity) {
       this.showOverlayAndStartTimer();
     }

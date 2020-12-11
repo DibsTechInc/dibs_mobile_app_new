@@ -62,7 +62,8 @@ class CalendarStrip extends PureComponent {
     this.resetAnimation();
 
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentWillUpdate = this.componentWillUpdate.bind(this);
+    // this.componentWillUpdate = this.componentWillUpdate.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.getDatesForWeek = this.getDatesForWeek.bind(this);
     this.getPreviousDays = this.getPreviousDays.bind(this);
     this.getNextDays = this.getNextDays.bind(this);
@@ -82,7 +83,8 @@ class CalendarStrip extends PureComponent {
    * @param {Object} props component will receive
    * @returns {undefined}
    */
-  componentWillUpdate(props) {
+  componentDidUpdate(props) {
+  // componentWillUpdate(props) {
     if (props.currentDate.toISOString() === this.props.currentDate.toISOString()) {
       this.resetAnimation();
       this.animate();

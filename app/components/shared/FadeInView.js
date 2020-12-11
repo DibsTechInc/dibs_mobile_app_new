@@ -43,8 +43,10 @@ class FadeInView extends React.PureComponent {
           ...this.props.style,
         }}
         pointerEvents={this.props.touchable}
+        useNativeDriver={false}
       >
         {this.props.children}
+        
       </Animated.View>
     );
   }
