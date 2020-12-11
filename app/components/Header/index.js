@@ -139,15 +139,15 @@ class Header extends React.PureComponent {
       console.log('registered that it is the receipt page');
       return this.props.navigation.navigate('NavigationStack', { screen: 'Main' }); 
     }
-    // if (
-    //   this.props.navigation.state.params
-    //   && this.props.navigation.state.params.previousRoute
-    // ) return this.props.navigation.navigate(this.props.navigation.state.params.previousRoute);
-
     if (
-      this.props.route.params
-      && this.props.route.params.previousRoute
-    ) return this.props.navigation.navigate(this.props.route.params.previousRoute);
+      this.props.navigation.state.params
+      && this.props.navigation.state.params.previousRoute
+    ) return this.props.navigation.navigate(this.props.navigation.state.params.previousRoute);
+
+    // if (
+    //   this.props.route.params
+    //   && this.props.route.params.previousRoute
+    // ) return this.props.navigation.navigate(this.props.route.params.previousRoute);
     
     return this.props.navigation.goBack();
   }
@@ -167,9 +167,22 @@ class Header extends React.PureComponent {
    * @returns {undefined}
    */
   getHeaderRightIcon() {
+    const {index, routes, type} = this.props.navigation.dangerouslyGetState();
+    const fullData = this.props.navigation.dangerouslyGetState();
+    const currentScreen = routes[index].name;
+    const currentNavigatorType = type;
+    console.log(`fullData FROM BOOKING CLASS => ${JSON.stringify(fullData)}\n\n`);
+    console.log('current screen', currentScreen);
+    console.log(`type = ${currentNavigatorType}`);
+    let shouldHideCart = false;
+    if (currentScreen == 'Receipt') {
+      shouldHideCart = true;
+    }
     switch (true) {
       case this.props.filterSlideOpened:
         return <CheckIcon handleOnPress={this.handleOnCloseSaveFilter} />;
+      case shouldHideCart:
+        return null;
       case this.props.showCart:
         return <CartIcon iconColor={WHITE} />;
       default:
