@@ -105,7 +105,6 @@ class EnterEmail extends PureComponent {
      */
 
     render() {
-      console.log('I am in the verify route');
       return (
           <FadeInView>
             <ScrollView keyboardShouldPersistTaps="always" contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: '70%', position: 'relative'}}>
@@ -126,7 +125,7 @@ class EnterEmail extends PureComponent {
             </ScrollView>
             <KeyboardAccessoryView
             alwaysVisible
-            hideBoarder
+            hideBorder
             style={{ backgroundColor: DEFAULT_BG, marginBottom: 25 }}
             >
               <StyledButtonView>
@@ -147,9 +146,9 @@ EnterEmail.propTypes = {
   navigation: PropTypes.shape(),
 };
 
-// EnterEmail.navigationOptions = {
-//   headerMode: 'none',
-// };
+EnterEmail.navigationOptions = {
+  headerMode: 'none',
+};
 
 const mapDispatchToProps = {
   validateEmail,
