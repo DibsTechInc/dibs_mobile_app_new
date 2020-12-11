@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-// import store from '../../store';
-// import { dequeueAlert } from '../../actions';
+import store from '../../store';
+import { dequeueAlert } from '../../actions';
 import { AlertCallbacks, removeAlertCallbacks } from '../../util/alert-callbacks-memo';
 
 /**
@@ -16,6 +16,7 @@ export function getAlerts(state) {
  * @returns {Array<Object>} alerts queue
  */
 export function getAlertsQueue(state) {
+  console.log('inside of getAlertsQueue');
   return getAlerts(state).queue || [];
 }
 
