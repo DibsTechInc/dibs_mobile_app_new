@@ -15,7 +15,7 @@ import {
   MAIN_ROUTE,
   PROFILE_ROUTE,
   SCHEDULE_ROUTE,
-  WHITE,
+  ACTUAL_WHITE,
   DARK_TEXT_GREY,
   UPCOMING_CLASS_ROUTE,
   BUY_ROUTE,
@@ -46,11 +46,11 @@ import {
   MyClassesIcon,
 } from '../../shared';
 import { SpaceBetweenRow, HeavyText } from '../../styled';
-// import BalanceDisplay from './BalanceDisplay';
+import BalanceDisplay from './BalanceDisplay';
 // import NavLink from './NavLink';
 
 const StyledContainer = styled.View`
-  background: ${WHITE};
+  background: ${ACTUAL_WHITE};
   paddingHorizontal: 20;
   paddingTop: 20;
   height: 100%;
@@ -72,8 +72,6 @@ const StyledHeavyText = styled(HeavyText)`
   max-width: 180px;
 `;
 
-
-
 const TopDrawerContent = ({ ...props}) => (
     <DrawerContentScrollView {...props}>
         <StyledContainer>
@@ -82,8 +80,13 @@ const TopDrawerContent = ({ ...props}) => (
               Alicia Thomas
             </StyledHeavyText>
           </StyledHeader>
+          <BalanceDisplay
+          label="Credit Balance"
+          value="56"
+          hasFlashCredit={true}
+        />
+          <DrawerItemList {...props}/>
         </StyledContainer>
-        <DrawerItemList {...props}/>
       </DrawerContentScrollView>
 );
 
