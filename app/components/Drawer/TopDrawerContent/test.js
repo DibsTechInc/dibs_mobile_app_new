@@ -70,12 +70,11 @@ const StyledHeavyText = styled(HeavyText)`
   color: ${DARK_TEXT_GREY};
   font-size: 16;
   max-width: 180px;
+  margin-bottom: 20;
 `;
 
 class TopDrawerContent extends React.Component {
     render() {
-        console.log('name');
-        console.log(this.props.usersFullName);
       return (
         <DrawerContentScrollView {...this.props}>
         <StyledContainer>
