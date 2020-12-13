@@ -85,10 +85,21 @@ class TopDrawerContent extends React.Component {
             </StyledHeavyText>
           </StyledHeader>
           <BalanceDisplay
-          label="Credit Balance"
-          value="56"
-          hasFlashCredit={true}
-        />
+            label="Credit Balance"
+            value={this.props.creditBalance}
+            hasFlashCredit={this.props.hasFlashCredit}
+          />
+          {Boolean(this.props.firstPassName) ? (
+          <BalanceDisplay
+            label="Current Package"
+            value={[
+              (this.props.firstPassIsUnlimited ?
+                '' : `${this.props.firstPassUsesLeft} Left - `)
+              + this.props.firstPassName,
+              `(Exp. ${this.props.firstPassExp})`,
+            ]}
+          />
+        ) : undefined}
           <DrawerItemList {...this.props}/>
         </StyledContainer>
       </DrawerContentScrollView>
@@ -97,11 +108,27 @@ class TopDrawerContent extends React.Component {
   }
 
   TopDrawerContent.propTypes = {
-      usersFullName: PropTypes.string,
+    usersFullName: PropTypes.string,
+    creditBalance: PropTypes.string,
+    hasFlashCredit: PropTypes.bool,
+    firstPassName: PropTypes.string,
+    firstPassIsUnlimited: PropTypes.bool,
+    firstPassUsesLeft: PropTypes.number,
+    firstPassExp: PropTypes.string,
+    navigation: PropTypes.shape(),
+    showsCreditTiers: PropTypes.bool,
   }
 
   const mapStatetoProps = state => ({
-      usersFullName: getUsersFullName(state),
+    usersFullName: getUsersFullName(state),
+    creditBalance: getFormattedTotalCreditsWithFlashCredits(state),
+    hasFlashCredit: getUserHasFlashCredit(state),
+    firstPassName: getUsersFirstPassName(state),
+    firstPassIsUnlimited: getUsersFirstPassIsUnlimited(state),
+    firstPassUsesLeft: getUsersFirstPassUsesLeft(state),
+    firstPassExp: getUsersFirstPassShortExpiresAt(state),
+    hasFlashCredit: getUserHasFlashCredit(state),
+    showsCreditTiers: getStudioShowsCredits(state),
   });
 
 
