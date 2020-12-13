@@ -22,7 +22,7 @@ export const SpaceBetweenRow = styled(FlexRow)`
 `;
 
 export const StudioColorBottomBorder = styled.View`
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-color: ${Config.STUDIO_COLOR}
 `;
 
@@ -32,7 +32,7 @@ export const MaterialPanelView = styled.View`
   border-color: ${LIGHT_GREY};
   border-left-width: 0;
   border-top-width: 0;
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-bottom-color: ${props => props.isCartPage ? LIGHT_GREY : 'transparent'};
   elevation: 3;
   height: ${props => (props.height ? props.height : 'auto')};

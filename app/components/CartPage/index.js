@@ -129,9 +129,10 @@ class CartPage extends PureComponent {
   }
   // trying this out
   /**
+   * @param {Object} props previous props
    * @returns {undefined}
    */
-  async componentDidUpdate(props) {
+  async UNSAFE_componentWillReceiveProps(props) {
     if (
       (this.props.events.length || this.props.packages.length)
       && !props.events.length
@@ -139,8 +140,9 @@ class CartPage extends PureComponent {
     ) {
       this.props.clearPromoCodeData();
     }
-    if (props.confirmedPurchases.length) {
+    if (this.props.confirmedPurchases.length) {
       this.props.navigation.navigate('NavigationStack', { screen: 'Receipt' }); 
+
     } else if (this.props.purchasing && !props.purchasing) {
       this.endPurchase();
     } 
@@ -195,6 +197,7 @@ class CartPage extends PureComponent {
   * @returns {undefined}
   */
   handlePurchase() {
+    console.log('i am aiming to handle purchase now');
     this.setState({ isProcessingPayment: true });
     this.props.submitCartForPurchase();
   }
@@ -331,6 +334,7 @@ class CartPage extends PureComponent {
       />) : undefined;
 
     if (this.state.isProcessingPayment) {
+      console.log('registered that i am processing a payment');
       return (
         <FadeInView style={{ backgroundColor: Config.STUDIO_COLOR }}>
           <FlexCenter>

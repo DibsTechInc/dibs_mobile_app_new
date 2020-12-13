@@ -12,11 +12,11 @@ import Overlay from './PurchaseItem/Overlay';
 
 const Container = styled(FlexRow)`
   background: ${WHITE},
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-bottom-color: ${LIGHT_GREY};
   overflow: hidden;
-  padding-top: 20;
-  padding-bottom: ${props => (props.showOverlay ? 40 : 20)};
+  padding-top: 20px;
+  padding-bottom: ${props => (props.showOverlay ? '40px' : '20px')};
   position: relative;
 `;
 
@@ -27,7 +27,7 @@ const PriceColumn = styled(FlexCenter)`
 const CenterColumn = styled.View`
   flex-basis: ${props => (props.isCartEvent ? '70%' : '45%')};
   margin-left: ${props => (props.isCartEvent ? '5%' : 0)};
-  padding-horizontal: 5;
+  padding-horizontal: 5px;
 `;
 
 const ButtonColumn = styled(FlexCenter)`
@@ -35,7 +35,7 @@ const ButtonColumn = styled(FlexCenter)`
 `;
 
 const Price = styled(HeavyText)`
-  font-size: 20;
+  font-size: 20px;
 `;
 
 const ScheduleText = styled(NormalText)`

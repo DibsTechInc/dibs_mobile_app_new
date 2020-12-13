@@ -5,7 +5,7 @@ import { stringify } from 'qs';
 
 import { getEventsOnCurrentDate } from '../../selectors/EventsSelectors';
 import { getStudioName } from '../../selectors/StudioSelectors';
-// import { enqueueApiError } from '../index';
+import { enqueueApiError } from '../index';
 
 const getDateAsString = date => (
   typeof date.toISOString === 'function' ? date.toISOString() : date.toString()

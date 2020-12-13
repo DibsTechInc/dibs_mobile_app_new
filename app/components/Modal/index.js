@@ -43,7 +43,7 @@ const Title = styled(HeavyText)`
 
 const Message = styled(NormalText)`
   border-color: ${LIGHT_GREY};
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   color: ${DARK_TEXT_GREY};
   margin-bottom: 15;
   padding-horizontal: 15;

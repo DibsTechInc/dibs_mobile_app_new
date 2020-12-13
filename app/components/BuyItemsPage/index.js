@@ -21,7 +21,7 @@ const NoticeContainer = styled.View`
   align-items: center;
   justify-content: space-between;
   background: ${WHITE},
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-bottom-color: ${LIGHT_GREY};
   overflow: hidden;
   padding-top: 40;
