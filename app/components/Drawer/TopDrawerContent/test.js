@@ -74,12 +74,14 @@ const StyledHeavyText = styled(HeavyText)`
 
 class TopDrawerContent extends React.Component {
     render() {
+        console.log('name');
+        console.log(this.props.usersFullName);
       return (
         <DrawerContentScrollView {...this.props}>
         <StyledContainer>
           <StyledHeader>
             <StyledHeavyText numberOfLines={1}>
-              Alicia Nicole Thomas
+              {this.props.usersFullName}
             </StyledHeavyText>
           </StyledHeader>
           <BalanceDisplay
@@ -100,7 +102,7 @@ class TopDrawerContent extends React.Component {
 
   const mapStatetoProps = state => ({
       usersFullName: getUsersFullName(state),
-  })
+  });
 
 
 // const TopDrawerContent = ({ ...props}) => (
@@ -121,4 +123,5 @@ class TopDrawerContent extends React.Component {
 //       </DrawerContentScrollView>
 // );
 
-export default TopDrawerContent;
+// export default TopDrawerContent;
+export default connect(mapStatetoProps)(TopDrawerContent);
