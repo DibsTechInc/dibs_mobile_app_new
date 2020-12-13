@@ -73,6 +73,12 @@ const StyledHeavyText = styled(HeavyText)`
   margin-bottom: 20;
 `;
 
+
+const StyledSpaceHere = styled.View`
+  margin-bottom: 20;
+`;
+
+
 class TopDrawerContent extends React.Component {
     render() {
       return (
@@ -83,6 +89,7 @@ class TopDrawerContent extends React.Component {
               {this.props.usersFullName}
             </StyledHeavyText>
           </StyledHeader>
+          <StyledSpaceHere>
           <BalanceDisplay
             label="Credit Balance"
             value={this.props.creditBalance}
@@ -99,6 +106,7 @@ class TopDrawerContent extends React.Component {
             ]}
           />
         ) : undefined}
+        </StyledSpaceHere>
           <DrawerItemList {...this.props}/>
         </StyledContainer>
       </DrawerContentScrollView>
