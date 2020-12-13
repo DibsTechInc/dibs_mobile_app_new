@@ -70,24 +70,92 @@ const StyledHeavyText = styled(HeavyText)`
   color: ${DARK_TEXT_GREY};
   font-size: 16;
   max-width: 180px;
+  margin-bottom: 20;
 `;
 
-const TopDrawerContent = ({ ...props}) => (
-    <DrawerContentScrollView {...props}>
+
+const StyledSpaceHere = styled.View`
+  margin-bottom: 18;
+`;
+
+
+class TopDrawerContent extends React.Component {
+    render() {
+      return (
+        <DrawerContentScrollView {...this.props}>
         <StyledContainer>
           <StyledHeader>
             <StyledHeavyText numberOfLines={1}>
-              Alicia Thomas
+              {this.props.usersFullName}
             </StyledHeavyText>
           </StyledHeader>
+          <StyledSpaceHere>
           <BalanceDisplay
-          label="Credit Balance"
-          value="56"
-          hasFlashCredit={true}
-        />
-          <DrawerItemList {...props}/>
+            label="Credit Balance"
+            value={this.props.creditBalance}
+            hasFlashCredit={this.props.hasFlashCredit}
+          />
+          {Boolean(this.props.firstPassName) ? (
+          <BalanceDisplay
+            label="Current Package"
+            value={[
+              (this.props.firstPassIsUnlimited ?
+                '' : `${this.props.firstPassUsesLeft} Left - `)
+              + this.props.firstPassName,
+              `(Exp. ${this.props.firstPassExp})`,
+            ]}
+          />
+        ) : undefined}
+        </StyledSpaceHere>
+          <DrawerItemList {...this.props}/>
         </StyledContainer>
       </DrawerContentScrollView>
-);
+      );
+    }
+  }
 
-export default TopDrawerContent;
+  TopDrawerContent.propTypes = {
+    usersFullName: PropTypes.string,
+    creditBalance: PropTypes.string,
+    hasFlashCredit: PropTypes.bool,
+    firstPassName: PropTypes.string,
+    firstPassIsUnlimited: PropTypes.bool,
+    firstPassUsesLeft: PropTypes.number,
+    firstPassExp: PropTypes.string,
+    navigation: PropTypes.shape(),
+    showsCreditTiers: PropTypes.bool,
+  }
+
+  const mapStatetoProps = state => ({
+    usersFullName: getUsersFullName(state),
+    creditBalance: getFormattedTotalCreditsWithFlashCredits(state),
+    hasFlashCredit: getUserHasFlashCredit(state),
+    firstPassName: getUsersFirstPassName(state),
+    firstPassIsUnlimited: getUsersFirstPassIsUnlimited(state),
+    firstPassUsesLeft: getUsersFirstPassUsesLeft(state),
+    firstPassExp: getUsersFirstPassShortExpiresAt(state),
+    hasFlashCredit: getUserHasFlashCredit(state),
+    showsCreditTiers: getStudioShowsCredits(state),
+  });
+
+
+// const TopDrawerContent = ({ ...props}) => (
+//     <DrawerContentScrollView {...props}>
+//         <StyledContainer>
+//           <StyledHeader>
+//             <StyledHeavyText numberOfLines={1}>
+//               Alicia Thomas
+//             </StyledHeavyText>
+//           </StyledHeader>
+//           <BalanceDisplay
+//           label="Credit Balance"
+//           value="56"
+//           hasFlashCredit={true}
+//         />
+//           <DrawerItemList {...props}/>
+//         </StyledContainer>
+//       </DrawerContentScrollView>
+// );
+
+// export default TopDrawerContent;
+export default connect(mapStatetoProps)(TopDrawerContent);

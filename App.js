@@ -313,6 +313,7 @@ class App extends React.Component {
             options={{gestureEnabled: true}}
             drawerContentOptions={{
               activeTintColor: '#757575',
+              itemStyle: { marginLeft: -8 },
               inactiveTintColor: '#757575',
               activeBackgroundColor: '#fff',
               labelStyle: {
