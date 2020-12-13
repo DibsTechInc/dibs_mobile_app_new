@@ -2,7 +2,9 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { 
+  createDrawerNavigator,
+ } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
 import styled from 'styled-components';
@@ -10,7 +12,7 @@ import { Asset } from 'expo-asset';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Updates from 'expo-updates';
 import * as Sentry from 'sentry-expo';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import IconAnt from 'react-native-vector-icons/AntDesign';
@@ -41,6 +43,8 @@ import ReferAFriendPage from './app/components/ReferAFriendPage';
 import MyClasses from './app/components/MyClasses';
 import CartPage from './app/components/CartPage';
 import Modal from './app/components/Modal';
+import TopDrawerContent from './app/components/Drawer/TopDrawerContent';
+// import SideMenu from './app/components/Drawer/SideMenu';
 
 
 import {
@@ -118,6 +122,13 @@ const StyledContainer = styled.View`
   height: 100%;
 `;
 
+function DrawerContent() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Drawer content</Text>
+    </View>
+  );
+}
 
 const StyledLoadingPage = styled.View`
   align-items: center;
@@ -296,6 +307,7 @@ class App extends React.Component {
         <NavigationContainer>
           {(this.state.fontLoaded) ? (
             <Drawer.Navigator 
+            drawerContent={(props) => <TopDrawerContent {...props}/>}
             initialRouteName={NAVIGATION_STACK_ROUTE}
             headerMode="none"
             options={{gestureEnabled: true}}
