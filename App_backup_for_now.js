@@ -3,7 +3,8 @@ import { Provider } from 'react-redux';
 import { View, AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components';
-import { Updates } from 'expo';
+// import { Updates } from 'expo';
+import * as Updates from 'expo-updates'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';

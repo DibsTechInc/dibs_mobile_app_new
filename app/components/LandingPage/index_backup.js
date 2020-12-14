@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-import { Updates } from 'expo';
+// import { Updates } from 'expo';
+import * as Updates from 'expo-updates';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 

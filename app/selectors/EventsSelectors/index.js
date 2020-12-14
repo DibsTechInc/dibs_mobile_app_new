@@ -70,6 +70,7 @@ export const getEventsAreLoading = createSelector(
  * @returns {Object} events state
  */
 export function getEventsData(state) {
+  console.log(`events data for flex --> ${JSON.stringify(getEvents(state))}`);
   return getEvents(state).data || [];
 }
 
@@ -132,9 +133,14 @@ export const getEventsOnCurrentDateAfterNow = createSelector(
   events => events.filter(event => moment.tz(event.start_time, event.mainTZ).isAfter(moment()))
 );
 
+export const getEventsOnCurrentDateAfterNowSansPrivate = createSelector(
+  getEventsOnCurrentDateAfterNow,
+  events => events.filter(event => !event.private)
+);
+
 export const getFilteredEvents = createSelector(
   [
-    getEventsOnCurrentDateAfterNow,
+    getEventsOnCurrentDateAfterNowSansPrivate,
     getFilterLocationIdsAsArray,
   ],
   (

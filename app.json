@@ -1,24 +1,25 @@
 {
   "expo": {
-    "name": "DibsApp",
-    "slug": "DibsApp",
-    "version": "1.0.0",
+    "name": "Sweat From Home App",
+    "slug": "sweat-from-home-app",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 3000
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "requireFullScreen": true
+      "bundleIdentifier": "com.ondibs.sweatfhapp",
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {

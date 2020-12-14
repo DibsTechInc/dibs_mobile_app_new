@@ -130,7 +130,7 @@ class Header extends React.PureComponent {
 
     if (currentNavigatorType == 'drawer') {
       console.log(`\n\n`);
-      console.log('registered that it is a drawer');
+      // console.log('registered that it is a drawer');
       return this.props.navigation.dispatch(DrawerActions.toggleDrawer());
     }
 

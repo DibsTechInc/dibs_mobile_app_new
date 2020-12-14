@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sentry from 'sentry-expo';
 import { connect } from 'react-redux';
-import { Updates } from 'expo';
+// import { Updates } from 'expo';
+import * as Updates from 'expo-updates';
 import styled from 'styled-components';
 
 import Config from '../../../config.json';
